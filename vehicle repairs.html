@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vehicle Repairs | Bullet Auto Service Station</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/png" href="UploadedImage0.jpg">
+A  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+      color: #222;
+      min-height: 100vh;
+      animation: fadeInBody 1.2s;
+    }
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    nav {
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(255,255,255,0.72); /* Transparent nav bar */
+      box-shadow:0 2px 12px rgba(0,0,0,0.07);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 40px;
+      height:70px;
+      animation: slideDownNav 1s cubic-bezier(.23,1.01,.32,1);
+      backdrop-filter: transparent(8px); /* subtle glass effect */
+      -webkit-backdrop-filter: Transparent(8px);
+    }
+    @keyframes slideDownNav {
+      from { transform: translateY(-60px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    nav a {
+      text-decoration:none;
+      color:#1a237e;
+      font-weight:600;
+      font-size:1.1rem;
+      transition:color 0.2s, transform 0.2s;
+      position: relative;
+      padding: 6px 0;
+      margin-left: 8px;
+      margin-right: 8px;
+      animation: fadeInNavLink 1.2s;
+    }
+    nav a::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #3949ab;
+      transition: width .3s;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    nav a:hover {
+      color: #3949ab;
+      transform: scale(1.08);
+    }
+    nav a.active {
+      color:#3949ab;
+    }
+    @keyframes fadeInNavLink {
+      from { opacity: 0; transform: translateY(-20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .brand-logo {
+      font-family: 'Orbitron',sans-serif;
+      font-size: 2.2rem;
+      color: #1a237e;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-shadow: 0 2px 12px rgba(60,60,120,0.07);
+      animation: popInLogo 1.2s;
+    }
+    @keyframes popInLogo {
+      0% { opacity: 0; transform: scale(0.7);}
+      70% { opacity: 1; transform: scale(1.1);}
+      100% { opacity: 1; transform: scale(1);}
+    }
+    @media (max-width: 900px) {
+      nav { padding: 0 10px; }
+      .brand-logo { font-size: 1.3rem;}
+      .vehicle-box { padding: 18px 6px; }
+    }
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        height: auto;
+        padding: 0 4vw;
+        gap: 8px;
+      }
+      .brand-logo {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+        text-align: center;
+        width: 100%;
+      }
+      nav div {
+        flex-direction: column !important;
+        gap: 10px !important;
+        align-items: flex-start !important;
+        width: 100%;
+      }
+      nav a {
+        width: 100%;
+        text-align: left;
+        padding: 10px 0;
+        margin: 0;
+      }
+      .vehicle-box li {
+        font-size: 0.98rem !important;
+      }
+      nav div {
+        flex-direction: column !important;
+        gap: 10px !important;
+        align-items: flex-start !important;
+      }
+    }
+    /* Animated background slideshow */
+    .bg-slideshow {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .bg-slide {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.7s cubic-bezier(.4,1.2,.6,1);
+      will-change: opacity;
+      animation: none;
+    }
+    .bg-slide.active {
+      opacity: 1;
+      transition: opacity 1.7s cubic-bezier(.4,1.2,.6,1);
+      z-index: 1;
+    }
+    /* Optional: subtle overlay for readability */
+    .bg-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: linear-gradient(120deg,rgba(224,234,252,0.35) 60%,rgba(207,222,243,0.35) 100%);
+      z-index: 1;
+      pointer-events: none;
+      mix-blend-mode: lighten;
+      animation: fadeInOverlay 1.5s;
+    }
+    @keyframes fadeInOverlay {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    /* Ensure content is above background */
+    body > *:not(.bg-slideshow):not(.bg-overlay) {
+      position: relative;
+      z-index: 2;
+    }
+    /* Responsive: hide background on very small screens if needed */
+    @media (max-width: 600px) {
+      /* .bg-overlay { display: none; } */
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background Slideshow -->
+  <div class="bg-slideshow">
+    <div class="bg-slide" style="background-image:url('doc\ eddie.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('fast\ car\ 1.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('fast\ car\ 2.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('fast\ car\ 3.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('big\ boi\ cars.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('fast\ car\ 4.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('fast\ car\ 5.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('fast\ car\ 6.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('fast\ car\ 7.jpg');"></div>
+
+    <!-- Add more images as needed -->
+  </div>
+  <div class="bg-overlay"></div>
+  <nav>
+    <span class="brand-logo">Bullet Auto Service Station</span>
+    <div style="display:flex;gap:32px;">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="booking.html">Book</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+    </div>
+  </nav>
+  <!-- Add your Vehicle Repairs page content here -->
+  <!-- Add this after your navigation bar, before any other content -->
+<div class="vehicle-box" style="max-width:600px;margin:48px auto 0 auto;padding:32px 26px;
+     background:rgba(247,250,255,0.75); /* More transparent white-blue */
+     border-radius:18px;
+     box-shadow:0 6px 32px rgba(26,35,126,0.13);
+     animation:fadeInBox 1.2s 0.2s both;">
+  <h2 style="color:#1a237e;font-family:'Orbitron',sans-serif;font-size:1.5rem;margin-top:0;margin-bottom:18px;letter-spacing:1px;text-align:center;">
+    <i class="fa fa-tools" style="color:#3949ab;margin-right:8px;"></i>Vehicle Repairs & Services
+  </h2>
+  <ul style="font-size:1.08rem;line-height:1.7;margin-left:0;padding-left:0;list-style: disc inside;">
+    <li>Automotive - Repairs</li>
+    <li>Cv's / Brakes / Clutches and Suspensions</li>
+    <li>4x4 Fitment</li>
+    <li>House Calls (Prior to Booking)</li>
+    <li>Vehicle Pick up / Drop off</li>
+    <li>Aircon Re-Gas</li>
+    <li>Weekend Services (Prior to Booking)</li>
+    <li>Caravan repairs / services (tail lights, brakes and bearings)</li>
+  </ul>
+</div>
+<!-- Make sure Font Awesome is loaded in your <head> for the icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<script>
+    // Simple background slideshow logic
+    const slides = document.querySelectorAll('.bg-slide');
+    let current = 0;
+    function showSlide(idx) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === idx);
+      });
+    }
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+    showSlide(current);
+    setInterval(nextSlide, 6000); // Change every 6 seconds
+  </script>
+</body>
+</html>

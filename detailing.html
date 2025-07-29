@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bullet Auto Service Station</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Add your favicon here -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- Animated background slideshow -->
+  <style>
+    .bg-slideshow {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .bg-slide {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.7s cubic-bezier(.4,1.2,.6,1);
+      will-change: opacity;
+      animation: none;
+    }
+    .bg-slide.active {
+      opacity: 1;
+      transition: opacity 1.7s cubic-bezier(.4,1.2,.6,1);
+      z-index: 1;
+    }
+    .bg-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: linear-gradient(120deg,rgba(224,234,252,0.35) 60%,rgba(207,222,243,0.35) 100%);
+      z-index: 1;
+      pointer-events: none;
+      mix-blend-mode: lighten;
+      animation: fadeInOverlay 1.5s;
+    }
+    @keyframes fadeInOverlay {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    body > *:not(.bg-slideshow):not(.bg-overlay) {
+      position: relative;
+      z-index: 2;
+    }
+    @media (max-width: 600px) {
+      /* .bg-overlay { display: none; } */
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background Slideshow -->
+  <div class="bg-slideshow">
+    <div class="bg-slide" style="background-image:url('detail1.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('detail2.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('detail3.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('detail4.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('detail5.jpg');"></div>
+    <!-- Add more images as needed -->
+  </div>
+  <div class="bg-overlay"></div>
+
+  <!-- Place at the top of scheduled.html and detailing.html, inside <body> -->
+  <nav>
+    <span class="brand-logo">Bullet Auto Service Station</span>
+    <div style="display:flex;gap:32px;">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="booking.html">Book</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+    </div>
+  </nav>
+
+  <!-- And add this CSS to the <head> of each file for consistent style: -->
+  <style>
+    nav {
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(255,255,255,0.72); /* Transparent nav bar */
+      box-shadow:0 2px 12px rgba(0,0,0,0.07);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 40px;
+      height:70px;
+      animation: slideDownNav 1s cubic-bezier(.23,1.01,.32,1);
+      backdrop-filter: blur(8px); /* subtle glass effect */
+      -webkit-backdrop-filter: blur(8px);
+    }
+    @keyframes slideDownNav {
+      from { transform: translateY(-60px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    nav a {
+      text-decoration:none;
+      color:#1a237e;
+      font-weight:600;
+      font-size:1.1rem;
+      transition:color 0.2s, transform 0.2s;
+      position: relative;
+      padding: 6px 0;
+      margin-left: 8px;
+      margin-right: 8px;
+      animation: fadeInNavLink 1.2s;
+    }
+    nav a::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #3949ab;
+      transition: width .3s;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    nav a:hover {
+      color: #3949ab;
+      transform: scale(1.08);
+    }
+    nav a.active {
+      color:#3949ab;
+    }
+    @keyframes fadeInNavLink {
+      from { opacity: 0; transform: translateY(-20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .brand-logo {
+      font-family: 'Orbitron',sans-serif;
+      font-size: 2.2rem;
+      color: #1a237e;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-shadow: 0 2px 12px rgba(60,60,120,0.07);
+      animation: popInLogo 1.2s;
+    }
+    @keyframes popInLogo {
+      0% { opacity: 0; transform: scale(0.7);}
+      70% { opacity: 1; transform: scale(1.1);}
+      100% { opacity: 1; transform: scale(1);}
+    }
+    @media (max-width: 900px) {
+      nav { padding: 0 10px; }
+      .brand-logo { font-size: 1.3rem;}
+    }
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        height: auto;
+        padding: 0 4vw;
+        gap: 8px;
+      }
+      .brand-logo {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+      }
+      nav div {
+        flex-direction: column !important;
+        gap: 10px !important;
+        align-items: flex-start !important;
+      }
+      /* If you add a card or info box, make it mobile-friendly too: */
+      .detailing-box {
+        padding: 10px 2vw !important;
+        border-radius: 10px !important;
+        margin: 18px 0 !important;
+        max-width: 98vw !important;
+        font-size: 0.98rem !important;
+      }
+      .detailing-box h2 {
+        font-size: 1.1rem !important;
+      }
+      .detailing-box ul {
+        font-size: 0.98rem !important;
+        margin-left: 8px !important;
+      }
+      .detailing-box li {
+        font-size: 0.98rem !important;
+      }
+    }
+  </style>
+
+  <!-- Add or ensure this is in the <style> section of ALL your HTML files for a consistent background: -->
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+      color: #222;
+      min-height: 100vh;
+      animation: fadeInBody 1.2s;
+    }
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+
+  <script>
+    // Simple background slideshow logic
+    const slides = document.querySelectorAll('.bg-slide');
+    let current = 0;
+    function showSlide(idx) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === idx);
+      });
+    }
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+    showSlide(current);
+    setInterval(nextSlide, 6000); // Change every 6 seconds
+  </script>
+</body>
+</html>

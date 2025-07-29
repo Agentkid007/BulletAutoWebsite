@@ -1,0 +1,314 @@
+<!-- Place at the top of scheduled.html and detailing.html, inside <body> -->
+<div class="bg-slideshow">
+  <div class="bg-slide" style="background-image:url('maintance.png');"></div>
+  <div class="bg-slide" style="background-image:url('main2.jpg');"></div>
+  <div class="bg-slide" style="background-image:url('main3.jpg');"></div>
+  <div class="bg-slide" style="background-image:url('main4.jpg');"></div>
+  <div class="bg-slide" style="background-image:url('main5.jpg');"></div>
+  <div class="bg-slide" style="background-image:url('main6.jpg');"></div>
+  <div class="bg-slide" style="background-image:url('main7.jpg');"></div>
+  <div class="bg-slide" style="background-image:url('main8.jpg');"></div>
+  <div class="bg-slide" style="background-image:url('main9.jpg');"></div>
+  <div class="bg-slide" style="background-image:url('main1.jpg');"></div>
+  <div class="bg-slide" style="background-image:url('main10.jpg');"></div>
+  <!-- Add more images as needed -->
+</div>
+<div class="bg-overlay"></div>
+<nav>
+  <span class="brand-logo">Bullet Auto Service Station</span>
+  <div style="display:flex;gap:32px;">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="booking.html">Book</a>
+    <a href="contact.html">Contact</a>
+    <a href="terms.html">Terms &amp; Conditions</a>
+  </div>
+</nav>
+
+<!-- And add this CSS to the <head> of each file for consistent style: -->
+<style>
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    color: #222;
+    min-height: 100vh;
+    animation: fadeInBody 1.2s;
+  }
+  @keyframes fadeInBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  nav {
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,255,255,0.72); /* Transparent nav bar */
+    box-shadow:0 2px 12px rgba(0,0,0,0.07);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 40px;
+    height:70px;
+    animation: slideDownNav 1s cubic-bezier(.23,1.01,.32,1);
+    backdrop-filter: blur(8px); /* subtle glass effect */
+    -webkit-backdrop-filter: blur(8px);
+  }
+  @keyframes slideDownNav {
+    from { transform: translateY(-60px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  nav a {
+    text-decoration:none;
+    color:#1a237e;
+    font-weight:600;
+    font-size:1.1rem;
+    transition:color 0.2s, transform 0.2s;
+    position: relative;
+    padding: 6px 0;
+    margin-left: 8px;
+    margin-right: 8px;
+    animation: fadeInNavLink 1.2s;
+  }
+  nav a::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #3949ab;
+    transition: width .3s;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  nav a:hover::after {
+    width: 100%;
+  }
+  nav a:hover {
+    color: #3949ab;
+    transform: scale(1.08);
+  }
+  nav a.active {
+    color:#3949ab;
+  }
+  @keyframes fadeInNavLink {
+    from { opacity: 0; transform: translateY(-20px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+  .brand-logo {
+    font-family: 'Orbitron',sans-serif;
+    font-size: 2.2rem;
+    color: #1a237e;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-shadow: 0 2px 12px rgba(60,60,120,0.07);
+    animation: popInLogo 1.2s;
+  }
+  @keyframes popInLogo {
+    0% { opacity: 0; transform: scale(0.7);}
+    70% { opacity: 1; transform: scale(1.1);}
+    100% { opacity: 1; transform: scale(1);}
+  }
+  @media (max-width: 900px) {
+    nav { padding: 0 10px; }
+    .brand-logo { font-size: 1.3rem;}
+    .didyouknow-box { padding: 18px 6px; }
+  }
+  @media (max-width: 600px) {
+    nav {
+      flex-direction: column;
+      height: auto;
+      padding: 0 4vw;
+      gap: 8px;
+    }
+    .brand-logo {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+    .didyouknow-box {
+      padding: 10px 2vw;
+      border-radius: 10px;
+      margin: 18px 0;
+      max-width: 98vw;
+      font-size: 0.98rem;
+    }
+    .didyouknow-title {
+      font-size: 1.1rem;
+      gap: 6px;
+    }
+    .didyouknow-icon {
+      font-size: 1.3rem;
+      top: 10px;
+      right: 10px;
+    }
+    .didyouknow-box ul {
+      font-size: 0.98rem;
+      margin-left: 8px;
+    }
+    .didyouknow-box h3 {
+      font-size: 1rem;
+    }
+  }
+  .didyouknow-box {
+    max-width: 600px;
+    margin: 48px auto 0 auto;
+    padding: 32px 26px;
+    background: rgba(247,250,255,0.75); /* Transparent card */
+    border-radius: 18px;
+    box-shadow: 0 6px 32px rgba(26,35,126,0.13);
+    animation: fadeInBox 1.2s 0.2s both;
+    position: relative;
+    overflow: hidden;
+  }
+  @keyframes fadeInBox {
+    from { opacity: 0; transform: translateY(40px) scale(0.97);}
+    to { opacity: 1; transform: translateY(0) scale(1);}
+  }
+  .didyouknow-icon {
+    font-size: 2.2rem;
+    color: #3949ab;
+    position: absolute;
+    top: 22px;
+    right: 28px;
+    opacity: 0.13;
+    animation: iconPop 1.2s 0.5s both;
+    pointer-events: none;
+  }
+  @keyframes iconPop {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 0.13; }
+  }
+  .didyouknow-title {
+    color: #1a237e;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: fadeInUp 1s 0.3s both;
+  }
+  .didyouknow-box p,
+  .didyouknow-box h3,
+  .didyouknow-box ul {
+    animation: fadeInUp 1s 0.5s both;
+  }
+  .didyouknow-box h3 {
+    color: #263278;
+    font-size: 1.13rem;
+    margin-bottom: 10px;
+    margin-top: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .didyouknow-box ul {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-left: 18px;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: disc inside;
+  }
+  .didyouknow-box li {
+    margin-bottom: 7px;
+    animation: fadeInLi 0.7s both;
+    animation-delay: calc(0.6s + var(--i, 0) * 0.08s);
+    opacity: 0;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+  @keyframes fadeInLi {
+    from { opacity: 0; transform: translateX(-20px);}
+    to { opacity: 1; transform: translateX(0);}
+  }
+  .bg-slideshow {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .bg-slide {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.7s cubic-bezier(.4,1.2,.6,1);
+    will-change: opacity;
+    animation: none;
+  }
+  .bg-slide.active {
+    opacity: 1;
+    transition: opacity 1.7s cubic-bezier(.4,1.2,.6,1);
+    z-index: 1;
+  }
+  .bg-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(120deg,rgba(224,234,252,0.35) 60%,rgba(207,222,243,0.35) 100%);
+    z-index: 1;
+    pointer-events: none;
+    mix-blend-mode: lighten;
+    animation: fadeInOverlay 1.5s;
+  }
+  @keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  body > *:not(.bg-slideshow):not(.bg-overlay) {
+    position: relative;
+    z-index: 2;
+  }
+  @media (max-width: 600px) {
+    .bg-slideshow, .bg-overlay { display: none; }
+  }
+</style>
+
+<div class="didyouknow-box">
+  <span class="didyouknow-icon">&#9888;</span>
+  <div class="didyouknow-title">
+    <span style="color:#3949ab;"><i class="fa fa-lightbulb"></i></span>
+    DID YOU KNOW?
+  </div>
+  <p style="font-size:1.08rem;margin-bottom:18px;">
+    Your vehicle should be serviced every <strong>10&nbsp;000km</strong> for <strong>Diesel</strong> vehicles and every <strong>15&nbsp;000km</strong> for <strong>Petrol</strong> vehicles.
+  </p>
+  <h3>Suggested Maintenance Schedule:</h3>
+  <ul>
+    <li style="--i:0">Brakes should be replaced every <strong>75&nbsp;000km</strong></li>
+    <li style="--i:1">Cam Belt should be replaced every <strong>90&nbsp;000km</strong></li>
+    <li style="--i:2">Shocks should be replaced every <strong>80&nbsp;000km</strong></li>
+    <li style="--i:3">Brake Fluid should be replaced every <strong>40&nbsp;000km</strong></li>
+    <li style="--i:4">Cooling system should be flushed every <strong>100&nbsp;000km</strong></li>
+    <li style="--i:5">Belt &amp; Hose check every <strong>70&nbsp;000km</strong></li>
+    <li style="--i:6">Tyre Rotation every <strong>10&nbsp;000km</strong></li>
+  </ul>
+</div>
+<!-- Make sure you have Font Awesome loaded in your <head> for the lightbulb icon: -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<!-- Add this before </body> -->
+<script>
+  // Simple background slideshow logic
+  const slides = document.querySelectorAll('.bg-slide');
+  let current = 0;
+  function showSlide(idx) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === idx);
+    });
+  }
+  function nextSlide() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }
+  if (slides.length) {
+    showSlide(current);
+    setInterval(nextSlide, 6000); // Change every 6 seconds
+  }
+</script>

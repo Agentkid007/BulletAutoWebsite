@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms & Conditions | Bullet Auto Service Station</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/png" href="UploadedImage0.jpg">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+      color: #222;
+      min-height: 100vh;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 32px auto;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.09);
+      padding: 32px 28px;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1.2s 0.2s both;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    h1, h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: #1a237e;
+      margin-top: 0;
+    }
+    h1 {
+      font-size: 2.1rem;
+      margin-bottom: 18px;
+    }
+    h2 {
+      font-size: 1.3rem;
+      margin-top: 32px;
+      margin-bottom: 10px;
+    }
+    h3 {
+      color: #263278;
+      margin-top: 28px;
+      margin-bottom: 8px;
+      font-size: 1.13rem;
+    }
+    p, li {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    ul {
+      margin-left: 18px;
+      margin-bottom: 18px;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 70px;
+      animation: slideDownNav 1s cubic-bezier(.23,1.01,.32,1);
+    }
+    @keyframes slideDownNav {
+      from { transform: translateY(-60px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    nav a {
+      text-decoration: none;
+      color: #1a237e;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.2s, transform 0.2s;
+      position: relative;
+      padding: 6px 0;
+      margin-left: 8px;
+      margin-right: 8px;
+      animation: fadeInNavLink 1.2s;
+    }
+    nav a::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #3949ab;
+      transition: width .3s;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    nav a:hover {
+      color: #3949ab;
+      transform: scale(1.08);
+    }
+    nav a.active {
+      color: #3949ab;
+    }
+    @keyframes fadeInNavLink {
+      from { opacity: 0; transform: translateY(-20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .brand-logo {
+      font-family: 'Orbitron',sans-serif;
+      font-size: 2.2rem;
+      color: #1a237e;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-shadow: 0 2px 12px rgba(60,60,120,0.07);
+      animation: popInLogo 1.2s;
+    }
+    @keyframes popInLogo {
+      0% { opacity: 0; transform: scale(0.7);}
+      70% { opacity: 1; transform: scale(1.1);}
+      100% { opacity: 1; transform: scale(1);}
+    }
+    @media (max-width: 900px) {
+      nav { padding: 0 10px; }
+      .brand-logo { font-size: 1.3rem;}
+    }
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        height: auto;
+        padding: 0 4vw;
+        gap: 8px;
+      }
+      .brand-logo {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+      }
+    }
+    /* Additional styles for the container and text elements */
+    .container {
+      padding: 18px 2vw;
+    }
+    h1 {
+      font-size: 1.8rem;
+    }
+    h2 {
+      font-size: 1.2rem;
+    }
+    h3 {
+      font-size: 1.1rem;
+    }
+    p, li {
+      font-size: 1rem;
+    }
+    ul {
+      margin-left: 16px;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px 2vw;
+        border-radius: 10px;
+        margin: 14px 0;
+        max-width: 99vw;
+      }
+      h1 { font-size: 1.3rem; }
+      h2 { font-size: 1.05rem; }
+      h3 { font-size: 1rem; }
+      p, li { font-size: 0.98rem; }
+      ul { margin-left: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sticky Navigation Bar -->
+  <nav>
+    <span class="brand-logo">Bullet Auto Service Station</span>
+    <div style="display:flex;gap:32px;">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="booking.html">Book</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>Terms &amp; Conditions</h1>
+    <p><strong>Bullet Auto Performance</strong> (trading as Bullet Auto Service Station)</p>
+
+    <h2>Privacy</h2>
+    <p>
+      Our top priority is protecting your privacy. Bullet Auto Performance is dedicated to safeguarding your information. By using the Services, you are agreeing that Bullet Auto Performance may store the information you provided as part of the registration process. Individual online usage patterns will not be disclosed to either advertisers or to third parties. By using this Services, you are agreeing that Bullet Auto Performance may (depending on the solution you chose) store the documents administered within its online servers and make them accessible to you and the users you share these documents with. Bullet Auto Performance will not disclose the name of your organization, or the names, addresses, telephone numbers, email addresses, or other personal identifying information regarding document signers or users, without prior written consent.
+    </p>
+    <p>
+      In order to provide you with services, Bullet Auto Performance will need to process certain personal information as defined in the Protection of Personal Information Act 4 of 2013. The personal information that Bullet Auto Performance will need to process depends on the type of authentication you require but at a minimum you agree to the processing of your full name, your surname, your email addresses and your phone number. Where required for credit checks, you also provide consent for Bullet Auto Performance to process your identity number.
+    </p>
+    <p>
+      You must expressly agree to the processing of the above personal information and you must therefore tick the I agree box on the registration form when registering your vehicle to indicate your express consent to the processing of your personal information.
+    </p>
+
+    <h2>Security</h2>
+    <p>
+      Bullet Auto Performance is committed to security. We use secured databases and employ commercially reasonable precautions to maintain the security of the system, including the use of industry standard encryption methods to prevent unauthorized access to customer documents and account information stored on our servers. Of course, the Services cannot protect any information after it has left the Services.
+    </p>
+
+    <h2>Your Representations and Obligations</h2>
+    <h3>Amendment</h3>
+    <p>
+      You are responsible for reviewing the current version of the Customer Agreement periodically. Bullet Auto Performance may amend this Agreement by (a) posting a revised Customer Agreement on the Bullet Auto Performance website, or (b) sending information regarding the amendment to the email address you provide to Bullet Auto Performance. Continued use of the Services will be deemed acceptance of the amended Agreement.
+    </p>
+
+    <h3>Proper Use</h3>
+    <p>
+      You agree to comply with the terms and conditions of this Agreement and with all applicable local, provincial, national and international laws and regulations and all Internet regulations, policies and procedures, including all export and other laws regarding the transmission of technical data exported from any country through the Services. You agree that you will not use the Services for illegal purposes, to disrupt to the Services, or to distribute content that violates the privacy, intellectual property or other proprietary rights of any third party, or for purposes that Bullet Auto Performance reasonably determines to be unlawful, obscene, defamatory, harassing, fraudulent, abusive, threatening, harmful, vulgar, or otherwise objectionable. You are wholly responsible for the contents of your transactions through the Services.
+    </p>
+
+    <h3>Age</h3>
+    <p>
+      You represent and warrant that you are at least 18 years of age (or, as applicable, the age of majority in the state or province in which you reside), and that you possess the legal right and ability to enter into this Agreement.
+    </p>
+
+    <h3>Registration</h3>
+    <p>
+      The Service requires you to register your vehicle. You represent and warrant that all of the information you provide to Bullet Auto Performance is true, accurate and complete, and that you have legal right to use the e-mail address(es) you provide. You agree to keep your information current by updating your account information.
+    </p>
+
+    <h3>Communication</h3>
+    <p>
+      You also agree that all electronic communications or notices sent to the e-mail address you provide to Bullet Auto Performance, placed in your registration will be considered “in writing” and received within five (5) business days of its dissemination. Bullet Auto Performance disclaims all responsibility for all failures in communication caused by failures of third parties to properly process or deliver Bullet Auto Performance’s electronic communications.
+    </p>
+
+    <h2>Bullet Auto Performance's Rights and Disclaimers</h2>
+    <h3>Limitation of Liability and Disclaimers of Warranty</h3>
+    <p>
+      YOU EXPRESSLY UNDERSTAND AND AGREE THAT BULLET AUTO PERFORMANCE SHALL NOT BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR EXEMPLARY DAMAGES OF ANY KIND, INCLUDING, BUT NOT LIMITED TO, DAMAGES FOR LOSS OF PROFITS, GOODWILL, USE, DATA OR OTHER INTANGIBLE LOSSES (EVEN IF SUCH BULLET AUTO PERFORMANCE HAS BEEN ADVISED OF THE POSSIBILITY THEREOF), AND INCLUDING DAMAGES RESULTING FROM: (i) ANY DOCUMENT OR TRANSACTION SENT THROUGH THE SERVICES WHERE BULLET AUTO PERFORMANCE WAS NOT A DIRECT PARTY; (ii) THE USE OR INABILITY TO USE THE SERVICES, INCLUDING ERRORS, INTERRUPTIONS OR DELAYS; (iii) UNAUTHORIZED ACCESS TO OR ALTERATION OF YOUR DOCUMENTS OR TRANSMISSIONS; OR (iv) ANY OTHER MATTER RELATING TO THE SERVICES. BULLET AUTO PERFORMANCE’s LIABILITY SHALL NOT EXCEED, IN THE AGGREGATE, A SUM EQUAL TO THE AMOUNT OF FEES (IF ANY) PAID FOR USING THE SERVICES UNDER THIS AGREEMENT.
+    </p>
+
+    <h3>Disclaimer of Warranty</h3>
+    <p>
+      YOUR USE OF THE SERVICES IS AT YOUR SOLE RISK. BULLET AUTO PERFORMANCE PROVIDES THE SERVICES ON AN “AS IS” AND “AS AVAILABLE” BASIS. BULLET AUTO PERFORMANCE EXPRESSLY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+    </p>
+    <p>
+      BULLET AUTO PERFORMANCE DOES NOT WARRANT AND EXPRESSLY DISCLAIMS THAT (i) THE SERVICES WILL MEET YOUR REQUIREMENTS; (ii) THE SERVICES WILL BE UNINTERRUPTED, RELIABLE, TIMELY, SECURE, ERROR-FREE OR FREE OF VIRUSES AND OTHER HARMFUL COMPONENTS, (iii) ANY ERRORS ON THE BULLET AUTO PERFORMANCE WEB SITE OR SERVICES WILL BE CORRECTED; AND (iv) THAT DOCUMENTS OR MATERIALS THAT YOU STORE VIA THE SERVICES WILL REMAIN ACCESSIBLE.
+    </p>
+    <p>
+      ANY MATERIAL DOWNLOADED OR OTHERWISE OBTAINED THROUGH THE USE OF THE SERVICES IS DONE AT YOUR SOLE DISCRETION AND RISK, AND YOU WILL BE SOLELY RESPONSIBLE FOR ANY DAMAGE TO YOUR COMPUTER SYSTEM OR LOSS OF DATA THAT RESULTS FROM THE DOWNLOAD OF ANY SUCH MATERIAL.
+    </p>
+    <p>
+      NO ADVICE OR INFORMATION, WHETHER ORAL OR WRITTEN, OBTAINED BY YOU FROM BULLET AUTO PERFORMANCE, OR THROUGH OR FROM THE BULLET AUTO PERFORMANCE WEB SITE OR SERVICES, SHALL CREATE ANY WARRANTY NOT EXPRESSLY STATED IN THIS AGREEMENT.
+    </p>
+
+    <h2>Bullet Auto Performance Services</h2>
+    <h3>Digital Services: Policies</h3>
+    <p>
+      If you use the Services, you are agreeing to conduct business transactions with electronic documents and signatures instead of paper-based documents and signatures, subject to the provisions of the ECT Act. You are under no obligation to transact business electronically. To withdraw your consent to conduct electronic transactions, simply stop using the Services and contact the sending party to explore other options. You may read and sign each document on a case-by-case basis. Each decision to view or sign a document electronically does not affect the legal effect of any transactions already completed using either electronic or paper-based documents and signatures. You hereby agree to read every document before electronically signing it. You also agree to communicate all issues regarding the content of a document directly with the sending party. Finally, you agree to notify the sending parties and the Services of any change in your e-mail address in order to prevent interruptions to your communications. You acknowledge and understand that electronic signatures are legally binding in Europe and other countries. You also understand that printed copies of electronic documents are not considered legal originals, but rather copies of the original documents held within the Services.
+    </p>
+
+    <h2>General Provisions</h2>
+    <h3>Entire Agreement</h3>
+    <p>
+      This Agreement constitutes the entire agreement between you and Bullet Auto Performance and governs your use of the Service. This Agreement supersedes all prior agreements and understandings between you and Bullet Auto Performance, whether written or oral.
+    </p>
+
+    <h3>Indemnification</h3>
+    <p>
+      You agree to hold harmless and indemnify Bullet Auto Performance and its subsidiaries, affiliates, officers, agents, directors, managers, employees, and successors from any claims, losses, damages, suits, demands, liabilities, judgments, litigation costs and attorneys’ fees arising from or in any way related to your use of the Services, your breach of any of your obligations under this Agreement, or your violation of any applicable laws or regulations.
+    </p>
+
+    <h3>Severability and Waiver</h3>
+    <p>
+      If a court of competent jurisdiction declares any term or provision in this Agreement invalid or unenforceable, you and Bullet Auto Performance nevertheless agree that the court should construe that term or provision consistent with applicable law as nearly as possible to reflect the parties’ original intentions, and that the remaining terms and provisions remain in full force and effect. Failure by Bullet Auto Performance to exercise or enforce any provision of this Agreement shall not constitute a waiver of any such provision.
+    </p>
+
+    <h3>Choice of Law</h3>
+    <p>
+      This Agreement shall be governed by the laws of South Africa without regard to its conflict of law provisions. You and Bullet Auto Performance agree to submit to the personal and exclusive jurisdiction of the courts located within South Africa, subject to any provisions contained in any Master Services Agreement that you may have signed with Bullet Auto Performance.
+    </p>
+
+    <h2>Repair/Service/Maintenance or Replacement Work</h2>
+    <p>
+      These terms and conditions will only apply to the servicing, repairs, replacement, refurbishment, or any related activities (the “Work”) that will be carried out on any vehicle(s) or parts, accessories, or other items (collectively referred to as the “Goods”).
+    </p>
+
+    <h3>General</h3>
+    <ul>
+      <li>I have been advised to remove all items of value from the vehicle which are not required in order to carry out the Work when leaving the vehicle on the Authorised Service Repairer (ASR)’s premises.  The ASR does not accept liability for any loss or damage to items left in the vehicle.</li>
+      <li>The ASR will take all reasonable steps to take care of my vehicle and goods whilst in its possession, however, I will have to pay for any loss or damage due to circumstances outside ASR’s control. The risk of damage or loss of the goods remains the risk at all times and the ASR will only be held responsible for any loss, directly or indirectly attributable to its gross negligence.</li>
+      <li>I acknowledge that you have no obligation to provide me with a courtesy vehicle. However, if you agree to do so as a gesture of goodwill, the provision and use of the courtesy vehicle will be subject to the availability of vehicles and on the terms and conditions as you determine.</li>
+    </ul>
+
+    <h3>Authorisation of Repair Costs</h3>
+    <ul>
+      <li>I warrant that the person affixing his/her signature to this document is duly authorised to approve any Work and I shall be bound thereto.</li>
+      <li>I understand and agree that I am liable for any and all costs not paid by a warranty, motor/maintenance plan.</li>
+      <li>If the Work to be carried out is covered by warranty, maintenance, or service plan of the manufacturer of the vehicle, or any third party, the ASR will obtain the approval of the manufacturer or relevant party if necessary, before it starts any Work. If either the manufacturer or the relevant party refuses to pay for the required Work or parts, or if I am responsible to pay a portion of the costs, then the ASR will only proceed with the Work once I have agreed to pay for it and have specifically authorised the ASR to proceed with the Work.</li>
+      <li>The ASR will provide me with an estimate (including stripping, diagnosing, quoting, and reassembling) pertaining to any Work which I will personally be liable to pay for, and will obtain my prior approval before carrying out such Work. My approval of work to be carried out which I will be liable for may be given telephonically and/or electronically and/or digitally and may be carried out by the ASR or any agent or sub-contractor appointed by the ASR.</li>
+      <li>In the event that I have authorised Work to be carried out as is contemplated above, such additional Work will be subject to all these terms and conditions and will not be deemed to constitute a new or separate contract.</li>
+      <li>If I cancel or fail to authorise the Work, then I will be liable to pay for the labour hours that ASR spent working on the vehicle up to the date on which I gave ASR notice of such cancellation.</li>
+      <li>I have been informed that the ASR does not collect or arrange for vehicles to be collected.</li>
+      <li>The ASR, or any of its designated employees, is entitled and authorised to drive the vehicle on public roads or elsewhere if required to do so in connection with any inspection, or Work, or other purposes for which the vehicle is accepted by the ASR, including, but not limited to, the testing of the vehicle, determining the nature of the Work to be carried out, taking the vehicle for body repairs or taking the vehicle to any other third party service provider as referred to above.</li>
+      <li>The ASR will carry out the Work as soon as is reasonably possible (bearing in mind that the ASR relies on the availability of parts and accessories). Any dates given for delivery and completion of the Work are estimates only and no exact delivery date or time has been agreed.</li>
+      <li>I acknowledge that the costs of the work done by the ASR or its agent or sub-contractors or parts supplied by such entities may increase and I agree to pay the costs of such Work or parts, subject to my receiving notice and approving such increases before Work commences.</li>
+      <li>In addition to any storage costs, I confirm and acknowledge that the ASR is entitled to dispose of my vehicle in any manner that the ASR deems fit (with or without a Court Order for purposes of recovering any amount due to yourselves for which I am liable and accordingly indemnify you for any claims whatsoever nature that may be brought against you now or in the future by my successors in title, or beneficiaries or any other third party.</li>
+    </ul>
+
+    <h3>Payment Terms</h3>
+    <ul>
+      <li>I understand that my Vehicle will only be released to me or my authorised representative once I have paid my account in full.</li>
+      <li>The Work is completed for the purposes of these terms and conditions when I receive notice from the ASR that my vehicle is ready for collection.</li>
+      <li>I understand that the ASR may require a deposit before commencing the Work.</li>
+      <li>If the ASR informs me that the vehicle is ready for collection and I don’t collect within 3 (three) business days of being notified, the ASR may charge me storage fees calculated from the notification date until the date of collection at a rate of R250-00 (two hundred and fifty rands) per day.</li>
+      <li>In addition to the storage costs, I confirm and acknowledge that ASR is entitled to dispose of my vehicle in a manner that ASR deems fit (with or without a Court Order) for the purposes of recovering any amount due to the ASR for which I am liable and accordingly indemnify the ASR against any claims of whatsoever nature that may be brought against ASR now or in the future by myself or any of my successors in title, or beneficiaries or any other third party.</li>
+    </ul>
+
+    <h3>Warranties</h3>
+    <ul>
+      <li>I have been informed that the ASR only uses genuine parts in carrying out the Work and warrants any new or reconditioned part installed during the Work and the labour required for the installation thereof, for a period of 3 (three) months after the date of such installation.</li>
+      <li>Any applicable warranty will:
+        <ul>
+          <li>Be void if I do not strictly comply with the terms and conditions of such warranty;</li>
+          <li>Not apply to ordinary wear and tear and normal usage of the vehicle; and</li>
+          <li>Be void if the vehicle or the parts have been subjected to misuse or abuse or have been equipped with grey (i.e., parts marketed/or distributed that has a trademark but have been imported without the express approval or licence of the authorised South African Distributor) or pirate (counterfeit) parts.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>General Terms and Conditions</h3>
+    <ul>
+      <li>Any change to the terms and conditions of this agreement will only be valid if it is made in writing and signed by both of us.</li>
+      <li>No granting of any leeway or the granting of any extension of time will be a waiver of any rights under this agreement or a change in the terms of this agreement.</li>
+      <li>If any clause in this agreement is found to be unenforceable, such clause will be separated from this agreement (i.e., this Agreement will be read as if the unenforceable clause never formed part of this Agreement).</li>
+      <li>For the purpose of service of any legal documents or notices in terms of this Offer, the parties choose the addresses on the face of this Offer as their domicilium citandi et executandi for delivery or service of any legal documents or notices. Any notice can be delivered by hand at such address or by courier to such address or email to my nominated email address and will be regarded as having been received by the party to whom it was so addressed.</li>
+      <li>If a party is in breach of this Agreement, the innocent party will have the right to recover all legal costs and disbursements on an attorney-and-client scale.</li>
+      <li>The ASR will have a general right to retain the Goods and all its contents (a general right to keep the vehicle as security) for all monies owing to the ASR by me on any account whatsoever.</li>
+      <li>Any amount indicated on any invoice issued to me by the ASR will be regarded as a liquidated amount (a fixed amount or an amount that is easily determinable) and any such amount will be regarded as correct and due, owing, and payable, by me to the ASR.</li>
+    </ul>
+
+    <h3>Discounts</h3>
+    <ul>
+      <li>Discounts may be applied at ASR's discretion and altered without prior notice unless a discount has been agreed on before any work is done. The specials page on ASR's website and any flyers may also be updated or altered without prior notice. When using telephone enquiries, please keep the name of the person who gave you the discount, then when signing in your vehicle ensure that person is still able to honour that discount. When a flyer has been used and it is agreed that it is valid, most flyers are valid for one use per service offer per vehicle, then ensure it is included or a note has been made when signing the vehicle in. Further discounts may be applied to goods but this is also at ASR's discretion. Disputes will be handled after payment has been made in full and a refund will then be generated thereafter unless another agreement has been met, this is also at ASR's discretion.</li>
+    </ul>
+  </div>
+</body>
+</html>
