@@ -9,95 +9,132 @@
   <link rel="icon" type="image/png" href="UploadedImage0.jpg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
-      margin:0;
-      font-family:'Roboto',sans-serif;
-      background:linear-gradient(135deg,#e0eafc 0%,#cfdef3 100%);
-      color:#222;
-      min-height:100vh;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background-attachment: fixed;
+      color: #1a1a1a;
+      min-height: 100vh;
       animation: fadeInBody 1.2s;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      pointer-events: none;
+      z-index: 0;
     }
     @keyframes fadeInBody {
       from { opacity: 0; }
       to { opacity: 1; }
     }
     .features {
-      display:flex;
-      flex-wrap:wrap;
-      gap:30px;
-      justify-content:center;
-      margin-top:40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      margin: 40px 20px;
       animation: fadeInUp 1.2s 0.3s both;
+      position: relative;
+      z-index: 1;
     }
     .feature {
-      background:linear-gradient(120deg,#e0eafc 60%,#cfdef3 100%);
-      border-radius:14px;
-      box-shadow:0 4px 16px rgba(0,0,0,0.09);
-      padding:32px 24px 28px 24px;
-      flex:1 1 320px;
-      min-width:280px;
-      max-width:370px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      transition: transform 0.3s, box-shadow 0.3s;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      padding: 32px 24px 28px 24px;
+      flex: 1 1 320px;
+      min-width: 280px;
+      max-width: 370px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       animation: popInCard 1.1s cubic-bezier(.23,1.01,.32,1) both;
-      text-align: center; /* Add this line to center all text in the feature boxes */
+      text-align: center;
     }
     .feature:hover {
-      transform: scale(1.06) translateY(-6px) rotate(-1deg);
-      box-shadow: 0 12px 36px rgba(26,35,126,0.13);
-      background: linear-gradient(120deg, #cfdef3 60%, #e0eafc 100%);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.2);
     }
     .feature img {
-      width:100%;
-      max-width:220px;
-      border-radius:10px;
-      margin-bottom:18px;
-      box-shadow:0 2px 8px rgba(0,0,0,0.07);
+      width: 100%;
+      max-width: 240px;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
       animation: fadeInImg 1.2s;
+      transition: transform 0.3s;
+    }
+    .feature:hover img {
+      transform: scale(1.05);
     }
     .feature h3 {
-      font-family:'Orbitron',sans-serif;
-      font-size:1.6rem;
-      margin-bottom:10px;
-      color:#1a237e;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: rgba(255, 255, 255, 0.95);
       animation: fadeInTitle 1.1s 0.2s both;
+      font-weight: 700;
+      letter-spacing: -0.5px;
     }
     .feature p {
-      font-size:1.1rem;
-      color:#333;
-      text-align:center;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.85);
+      text-align: center;
       animation: fadeInText 1.1s 0.4s both;
+      line-height: 1.6;
     }
     .service-hint {
-      font-size: 0.92rem;
-      color: #3949ab;
-      margin-top: 10px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-top: 14px;
       display: inline-block;
-      background: #e0eafc;
-      border-radius: 6px;
-      padding: 2px 10px 2px 8px;
-      font-style: italic;
-      letter-spacing: 0.5px;
-      box-shadow: 0 1px 4px rgba(57,73,171,0.06);
-      transition: background 0.2s;
-      text-align: center; /* Ensure service hints are centered */
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-style: normal;
+      letter-spacing: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s;
+      text-align: center;
+      font-weight: 500;
     }
     .feature:hover .service-hint {
-      background: #cfdef3;
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
     }
     nav {
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:#fff;
-      box-shadow:0 2px 12px rgba(0,0,0,0.07);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:0 40px;
-      height:70px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 70px;
       animation: slideDownNav 1s cubic-bezier(.23,1.01,.32,1);
     }
     @keyframes slideDownNav {
@@ -105,49 +142,53 @@
       to { transform: translateY(0); opacity: 1; }
     }
     nav a {
-      text-decoration:none;
-      color:#1a237e;
-      font-weight:600;
-      font-size:1.1rem;
-      transition:color 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
-      padding: 6px 0;
-      margin-left: 8px;
-      margin-right: 8px;
+      padding: 8px 16px;
+      margin-left: 4px;
+      margin-right: 4px;
       animation: fadeInNavLink 1.2s;
+      border-radius: 8px;
     }
     nav a::after {
       content: "";
       display: block;
       width: 0;
       height: 2px;
-      background: #3949ab;
+      background: rgba(255, 255, 255, 0.8);
       transition: width .3s;
       position: absolute;
-      bottom: 0;
-      left: 0;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
     }
     nav a:hover::after {
-      width: 100%;
+      width: 80%;
     }
     nav a:hover {
-      color: #3949ab;
-      transform: scale(1.08);
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
     }
     nav a.active {
-      color:#3949ab;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.2);
     }
     @keyframes fadeInNavLink {
       from { opacity: 0; transform: translateY(-20px);}
       to { opacity: 1; transform: translateY(0);}
     }
     .brand-logo {
-      font-family: 'Orbitron',sans-serif;
-      font-size: 2.2rem;
-      color: #1a237e;
-      letter-spacing: 2px;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      font-size: 1.8rem;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: -0.5px;
       font-weight: 700;
-      text-shadow: 0 2px 12px rgba(60,60,120,0.07);
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
       animation: popInLogo 1.2s;
     }
     @keyframes popInLogo {
@@ -177,80 +218,89 @@
       to { opacity: 1; transform: translateY(0);}
     }
     footer {
-      background:#1a237e;
-      color:white;
-      text-align:center;
-      padding:32px 10px 18px 10px;
-      font-size:1.1rem;
-      letter-spacing:1px;
-      margin-top:40px;
-      border-radius:18px 18px 0 0;
-      box-shadow:0 -2px 12px rgba(0,0,0,0.09);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.95);
+      text-align: center;
+      padding: 40px 20px 24px 20px;
+      font-size: 1rem;
+      letter-spacing: 0;
+      margin: 60px 20px 20px 20px;
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3);
       animation: fadeInFooter 1.2s 1.2s both;
+      position: relative;
+      z-index: 1;
     }
     @keyframes fadeInFooter {
       from { opacity: 0; transform: translateY(40px);}
       to { opacity: 1; transform: translateY(0);}
     }
     .footer-links a {
-      color: #fff;
-      text-decoration: underline;
+      color: rgba(255, 255, 255, 0.95);
+      text-decoration: none;
       margin: 0 8px;
-      transition: color 0.2s;
+      transition: all 0.2s;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      padding-bottom: 2px;
     }
     .footer-links a:hover {
-      color: #25d366;
+      color: #ffffff;
+      border-bottom-color: rgba(255, 255, 255, 0.8);
     }
     @media (max-width: 900px) {
-      .features { flex-direction: column; gap: 18px; }
+      .features { flex-direction: column; gap: 20px; margin: 30px 15px; }
       .feature { max-width: 100%; }
-      nav { padding: 0 10px; }
-      .brand-logo { font-size: 1.3rem;}
+      nav { padding: 0 20px; }
+      .brand-logo { font-size: 1.4rem;}
     }
     @media (max-width: 600px) {
       nav {
         flex-direction: column;
         height: auto;
-        padding: 0 4vw;
-        gap: 8px;
+        padding: 12px 20px;
+        gap: 12px;
       }
       .brand-logo {
-        font-size: 1.1rem;
-        margin-bottom: 6px;
+        font-size: 1.2rem;
+        margin-bottom: 8px;
       }
       .features {
-        gap: 10px;
-        margin-top: 18px;
+        gap: 15px;
+        margin: 20px 10px;
       }
       .feature {
-        padding: 14px 4vw 14px 4vw;
+        padding: 24px 20px;
         min-width: unset;
-        max-width: 98vw;
-        border-radius: 10px;
+        max-width: 100%;
+        border-radius: 20px;
       }
       .feature img {
-        max-width: 90vw;
+        max-width: 100%;
       }
       .feature h3 {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
       }
       .feature p {
-        font-size: 0.98rem;
+        font-size: 1rem;
       }
       section h2 {
-        font-size: 1.3rem !important;
-        margin-bottom: 18px !important;
-        padding: 0 4vw;
+        font-size: 1.6rem !important;
+        margin-bottom: 20px !important;
+        padding: 0 20px;
       }
       footer {
-        font-size: 0.95rem;
-        padding: 18px 2vw 10px 2vw;
-        border-radius: 12px 12px 0 0;
+        font-size: 0.9rem;
+        padding: 24px 15px 18px 15px;
+        margin: 40px 10px 10px 10px;
+        border-radius: 20px;
       }
       .footer-links {
         flex-direction: column;
-        gap: 4px;
-        font-size: 0.95rem;
+        gap: 8px;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -266,8 +316,8 @@
       <a href="terms.html">Terms &amp; Conditions</a>
     </div>
   </nav>
-  <section>
-    <h2 style="text-align:center;font-family:'Orbitron',sans-serif;color:#1a237e;font-size:2.2rem;margin-bottom:32px;animation:fadeInUp 1.2s 0.1s both;">Our Services</h2>
+  <section style="position: relative; z-index: 1;">
+    <h2 style="text-align:center;font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;color:rgba(255, 255, 255, 0.95);font-size:2.5rem;margin:40px 20px 20px 20px;animation:fadeInUp 1.2s 0.1s both;font-weight:700;letter-spacing:-1px;">Our Services</h2>
     <div class="features">
       <a href="vehicle repairs.html" style="text-decoration:none; color:inherit; flex:1 1 320px; min-width:280px; max-width:370px; display:flex;">
         <div class="feature" style="cursor:pointer; width:100%;">
@@ -297,9 +347,9 @@
   </section>
   <footer>
     <div style="margin-bottom:10px;">
-      <span style="font-family:'Orbitron',sans-serif;font-size:1.3rem;">Bullet Auto Service Station</span> &nbsp;|&nbsp;
-      <span>Email: <a href="mailto:services@bulletauto.co.za" style="color:#fff;text-decoration:underline;">services@bulletauto.co.za</a></span> &nbsp;|&nbsp;
-      <span>WhatsApp: <a href="https://wa.me/27723453221" style="color:#fff;text-decoration:underline;">0723453221</a></span>
+      <span style="font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;font-size:1.3rem;font-weight:600;">Bullet Auto Service Station</span> &nbsp;|&nbsp;
+      <span>Email: <a href="mailto:services@bulletauto.co.za">services@bulletauto.co.za</a></span> &nbsp;|&nbsp;
+      <span>WhatsApp: <a href="https://wa.me/27723453221">0723453221</a></span>
     </div>
     <p style="margin:0;">&copy; 2025 Bullet Auto Service Station. All rights reserved.</p>
   </footer>
