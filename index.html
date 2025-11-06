@@ -11,16 +11,25 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-attachment: fixed;
       color: #222;
       min-height: 100vh;
       overflow-x: hidden;
-      animation: fadeInBody 1.2s;
+      animation: pageTransitionIn 0.6s ease-out;
     }
-    @keyframes fadeInBody {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes pageTransitionIn {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(5px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
     }
     nav {
       position:sticky;
@@ -323,18 +332,18 @@
       to { opacity: 1; transform: scale(1) rotate(0deg);}
     }
     footer {
-      background: rgba(26, 35, 126, 0.85);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-top: 2px solid rgba(255, 255, 255, 0.3);
-      color:white;
+      border-top: 2px solid rgba(26, 35, 126, 0.2);
+      color: #1a237e;
       text-align:center;
       padding:32px 10px 18px 10px;
       font-size:1.1rem;
       letter-spacing:1px;
       margin-top:40px;
       border-radius:18px 18px 0 0;
-      box-shadow: 0 -8px 32px rgba(26,35,126,0.2), inset 0 1px 0 rgba(255,255,255,0.2);
+      box-shadow: 0 -8px 32px rgba(26,35,126,0.15), inset 0 1px 0 rgba(255,255,255,0.5);
       animation: fadeInFooter 1.2s 1.2s both;
     }
     @keyframes fadeInFooter {
@@ -342,13 +351,74 @@
       to { opacity: 1; transform: translateY(0);}
     }
     .footer-links a {
-      color: #fff;
+      color: #1a237e;
       text-decoration: underline;
       margin: 0 8px;
       transition: color 0.2s;
     }
     .footer-links a:hover {
       color: #25d366;
+    }
+    .why-choose {
+      margin: 60px 20px 40px 20px;
+      padding: 50px 40px;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(26, 35, 126, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      animation: fadeInUp 1.2s 1.6s both;
+      position: relative;
+      z-index: 1;
+    }
+    .why-choose h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: #1a237e;
+      font-size: 2.2rem;
+      margin-bottom: 32px;
+      text-align: center;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .why-item {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 16px;
+      padding: 28px 24px;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 16px rgba(26, 35, 126, 0.1);
+    }
+    .why-item:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 32px rgba(26, 35, 126, 0.2);
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .why-item i {
+      font-size: 3rem;
+      color: #25d366;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .why-item h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: #1a237e;
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .why-item p {
+      color: #222;
+      font-size: 1rem;
+      line-height: 1.6;
     }
     @media (max-width: 900px) {
       .stats-bar { flex-direction: column; gap: 18px; align-items: center;}
@@ -438,6 +508,43 @@
     </div>
     <div class="stats-bar">
       <div class="stat"><span id="stat1">0</span> Years of Experience</div>
+    </div>
+  </div>
+
+  <!-- Why Choose Bullet Auto Section -->
+  <div class="why-choose">
+    <h2>Why Choose Bullet Auto?</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <i class="fas fa-award"></i>
+        <h3>50+ Years Experience</h3>
+        <p>Trusted automotive experts serving the community with excellence since 1975</p>
+      </div>
+      <div class="why-item">
+        <i class="fas fa-tools"></i>
+        <h3>Expert Technicians</h3>
+        <p>Certified professionals with extensive training and cutting-edge diagnostic tools</p>
+      </div>
+      <div class="why-item">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Quality Guaranteed</h3>
+        <p>We stand behind our work with comprehensive warranties on all repairs and services</p>
+      </div>
+      <div class="why-item">
+        <i class="fas fa-clock"></i>
+        <h3>Fast Turnaround</h3>
+        <p>Efficient service without compromising quality - get back on the road quickly</p>
+      </div>
+      <div class="why-item">
+        <i class="fas fa-dollar-sign"></i>
+        <h3>Fair Pricing</h3>
+        <p>Transparent, competitive rates with no hidden fees or surprise charges</p>
+      </div>
+      <div class="why-item">
+        <i class="fas fa-handshake"></i>
+        <h3>Customer First</h3>
+        <p>Dedicated to your satisfaction with personalized service and honest advice</p>
+      </div>
     </div>
   </div>
 
