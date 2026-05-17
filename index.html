@@ -9,86 +9,108 @@
   <link rel="icon" type="image/png" href="UploadedImage0.jpg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
+    :root {
+      --bg-grad-start: #667eea;
+      --bg-grad-end: #764ba2;
+      --surface: rgba(255,255,255,0.60);
+      --text: #1a237e;
+      --accent: #3949ab;
+      --accent-2: #25d366;
+      --border: rgba(26,35,126,0.18);
+      --shadow: rgba(26,35,126,0.12);
+    }
+    [data-theme="dark"] {
+      --bg-grad-start: #0f172a;
+      --bg-grad-end: #1e293b;
+      --surface: rgba(20,23,31,0.65);
+      --text: #e5e7eb;
+      --accent: #93c5fd;
+      --accent-2: #34d399;
+      --border: rgba(148,163,184,0.25);
+      --shadow: rgba(2,6,23,0.35);
+    }
+    /* Dark-mode readability override for hero heading */
+    [data-theme="dark"] .home-hero h1 { color: #1a237e; }
+    [data-theme="dark"] .home-hero p { color: #1a237e; }
     body {
       margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
-      color: #222;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Roboto', sans-serif;
+      background: linear-gradient(135deg, var(--bg-grad-start) 0%, var(--bg-grad-end) 100%);
+      background-attachment: fixed;
+      color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
-      animation: fadeInBody 1.2s;
+      animation: pageTransitionIn 0.6s ease-out;
     }
-    @keyframes fadeInBody {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes pageTransitionIn {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(5px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
     }
     nav {
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:#fff;
-      box-shadow:0 2px 12px rgba(0,0,0,0.07);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:0 40px;
-      height:70px;
-      animation: slideDownNav 1s cubic-bezier(.23,1.01,.32,1);
+      position:sticky; top:0; z-index:1000;
+      display:flex; align-items:center; justify-content:space-between;
+      height:54px; padding:0 28px;
+      background:var(--surface);
+      backdrop-filter: blur(12px) saturate(150%);
+      -webkit-backdrop-filter: blur(12px) saturate(150%);
+      border-bottom:1px solid var(--border);
+      box-shadow:0 2px 10px var(--shadow);
+      animation: slideDownNav .6s ease;
     }
     @keyframes slideDownNav {
       from { transform: translateY(-60px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
     nav a {
-      text-decoration:none;
-      color:#1a237e;
-      font-weight:600;
-      font-size:1.1rem;
-      transition:color 0.2s, transform 0.2s;
-      position: relative;
-      padding: 6px 0;
-      margin-left: 8px;
-      margin-right: 8px;
-      animation: fadeInNavLink 1.2s;
+      text-decoration:none; color:#1a237e; font-weight:600;
+      font-size:.95rem; letter-spacing:.3px;
+      padding:6px 10px; margin:0 4px; border-radius:6px;
+      position:relative; transition:color .25s ease, background .25s ease;
     }
+    nav a:nth-child(1) { animation-delay: 0.1s; }
+    nav a:nth-child(2) { animation-delay: 0.2s; }
+    nav a:nth-child(3) { animation-delay: 0.3s; }
+    nav a:nth-child(4) { animation-delay: 0.4s; }
     nav a::after {
       content: "";
       display: block;
       width: 0;
-      height: 2px;
-      background: #3949ab;
-      transition: width .3s;
+      height: 3px;
+      background: linear-gradient(90deg, #3949ab, #1a237e);
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       position: absolute;
-      bottom: 0;
-      left: 0;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
     }
-    nav a:hover::after {
-      width: 100%;
-    }
-    nav a:hover {
-      color: #3949ab;
-      transform: scale(1.08);
-    }
+    nav a:hover::after { width:100%; }
+    nav a:hover { color:var(--accent); background:rgba(57,73,171,0.08); }
     nav a.active {
       color:#3949ab;
     }
     @keyframes fadeInNavLink {
-      from { opacity: 0; transform: translateY(-20px);}
-      to { opacity: 1; transform: translateY(0);}
+      from { opacity: 0; transform: translateY(-30px) rotate(-5deg);}
+      to { opacity: 1; transform: translateY(0) rotate(0deg);}
     }
-    .brand-logo {
-      font-family: 'Orbitron',sans-serif;
-      font-size: 2.2rem;
-      color: #1a237e;
-      letter-spacing: 2px;
-      font-weight: 700;
-      text-shadow: 0 2px 12px rgba(60,60,120,0.07);
-      animation: popInLogo 1.2s;
+    .brand-logo { font-family:'Orbitron',sans-serif; font-size:1.5rem; color:var(--text); letter-spacing:1.5px; font-weight:700; cursor:pointer; transition:color .3s ease; }
+    .brand-logo:hover {
+      transform: scale(1.05) rotate(-2deg);
+      text-shadow: 0 4px 20px rgba(60,60,120,0.15);
     }
     @keyframes popInLogo {
-      0% { opacity: 0; transform: scale(0.7);}
-      70% { opacity: 1; transform: scale(1.1);}
-      100% { opacity: 1; transform: scale(1);}
+      0% { opacity: 0; transform: scale(0.3) rotate(-180deg);}
+      50% { opacity: 1; transform: scale(1.15) rotate(10deg);}
+      70% { transform: scale(0.95) rotate(-5deg);}
+      100% { opacity: 1; transform: scale(1) rotate(0deg);}
     }
     .home-hero {
       min-height: 70vh;
@@ -99,15 +121,20 @@
       position: relative;
       text-align: center;
       background: linear-gradient(120deg,#e0eafc 60%,#cfdef3 100%);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+      box-shadow: 0 8px 32px var(--shadow);
       border-radius: 0 0 32px 32px;
       margin-bottom: 40px;
-      animation: fadeInHero 1.2s 0.2s both;
+      animation: fadeInHero 1s 0.1s both ease-out;
       overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .home-hero:hover {
+      box-shadow: 0 12px 48px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
     }
     @keyframes fadeInHero {
-      from { opacity: 0; transform: translateY(40px);}
-      to { opacity: 1; transform: translateY(0);}
+      from { opacity: 0; transform: translateY(80px) scale(0.95) rotateX(10deg);}
+      to { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg);}
     }
     .hero-bg-anim {
       position: absolute;
@@ -117,54 +144,64 @@
       opacity: 0.4;
       z-index: 0;
       border-radius: 50%;
-      animation: floatBg 7s infinite alternate;
-      filter: blur(2px);
+      animation: floatBg 10s infinite ease-in-out alternate;
+      filter: blur(40px);
     }
     .hero-bg-anim2 {
       position: absolute;
       bottom: -80px; right: -80px;
       width: 180px; height: 180px;
       background: radial-gradient(circle, #3949ab 40%, #e0eafc 100%);
-      opacity: 0.18;
+      opacity: 0.25;
       z-index: 0;
       border-radius: 50%;
-      animation: floatBg2 8s infinite alternate;
-      filter: blur(2px);
+      animation: floatBg2 12s infinite ease-in-out alternate;
+      filter: blur(50px);
     }
     @keyframes floatBg {
-      from { transform: translateY(0);}
-      to { transform: translateY(30px);}
+      0% { transform: translate(0, 0) scale(1) rotate(0deg);}
+      33% { transform: translate(30px, -20px) scale(1.2) rotate(120deg);}
+      66% { transform: translate(-20px, 40px) scale(0.9) rotate(240deg);}
+      100% { transform: translate(0, 0) scale(1) rotate(360deg);}
     }
     @keyframes floatBg2 {
-      from { transform: translateY(0);}
-      to { transform: translateY(-30px);}
+      0% { transform: translate(0, 0) scale(1) rotate(0deg);}
+      25% { transform: translate(-35px, -25px) scale(1.3) rotate(90deg);}
+      50% { transform: translate(20px, -40px) scale(0.85) rotate(180deg);}
+      75% { transform: translate(-25px, 30px) scale(1.15) rotate(270deg);}
+      100% { transform: translate(0, 0) scale(1) rotate(360deg);}
     }
     .home-hero h1 {
       font-size:3.5rem;
       font-family:'Orbitron',sans-serif;
-      color:#1a237e;
+      color:var(--text);
       margin-bottom:18px;
       letter-spacing:2px;
-      animation: slideInLeft 1.2s 0.5s both;
+      animation: slideInLeft 1.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s both;
       position: relative;
       z-index: 1;
+      transition: all 0.3s ease;
+    }
+    .home-hero h1:hover {
+      transform: scale(1.02) translateY(-5px);
+      text-shadow: 0 10px 30px rgba(26, 35, 126, 0.3);
     }
     @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-60px);}
-      to { opacity: 1; transform: translateX(0);}
+      from { opacity: 0; transform: translateX(-100px) rotate(-10deg) scale(0.8);}
+      to { opacity: 1; transform: translateX(0) rotate(0deg) scale(1);}
     }
     .home-hero p {
       font-size:1.5rem;
-      color:#222;
+      color: var(--text);
       max-width:600px;
       margin:0 auto 30px auto;
-      animation: slideInRight 1.2s 0.7s both;
+      animation: slideInRight 1.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s both;
       position: relative;
       z-index: 1;
     }
     @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(60px);}
-      to { opacity: 1; transform: translateX(0);}
+      from { opacity: 0; transform: translateX(100px) rotate(10deg) scale(0.8);}
+      to { opacity: 1; transform: translateX(0) rotate(0deg) scale(1);}
     }
     .home-hero .animated-btn {
       display:inline-block;
@@ -172,28 +209,34 @@
       font-size:1.2rem;
       margin-top:18px;
       text-decoration:none;
-      background: linear-gradient(90deg, #1a237e 0%, #3949ab 100%);
-      color: white;
-      border: none;
-      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(15px) saturate(180%);
+      -webkit-backdrop-filter: blur(15px) saturate(180%);
+      color: #1a237e;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 12px;
       cursor: pointer;
       font-family: 'Orbitron', 'Roboto', sans-serif;
       letter-spacing: 1px;
-      box-shadow: 0 2px 8px rgba(26,35,126,0.09);
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 32px rgba(26,35,126,0.15), inset 0 1px 0 rgba(255,255,255,0.7);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       animation: bounceInBtn 1.1s 1s both;
       position: relative;
       z-index: 1;
+      font-weight: 700;
     }
     @keyframes bounceInBtn {
-      0% { transform: scale(0.8); opacity: 0.5;}
-      60% { transform: scale(1.05); opacity: 1;}
-      100% { transform: scale(1);}
+      0% { transform: scale(0.3) rotate(-180deg); opacity: 0;}
+      50% { transform: scale(1.15) rotate(10deg); opacity: 1;}
+      70% { transform: scale(0.9) rotate(-5deg);}
+      85% { transform: scale(1.05) rotate(2deg);}
+      100% { transform: scale(1) rotate(0deg);}
     }
     .home-hero .animated-btn:hover {
-      background: linear-gradient(90deg, #3949ab 0%, #1a237e 100%);
-      transform: translateY(-2px) scale(1.04);
-      box-shadow: 0 6px 24px rgba(26,35,126,0.13);
+      background: rgba(255, 255, 255, 0.4);
+      transform: translateY(-6px) scale(1.08) rotate(-2deg);
+      box-shadow: 0 16px 48px rgba(26,35,126,0.3), inset 0 1px 0 rgba(255,255,255,0.9);
+      border-color: rgba(255, 255, 255, 0.8);
     }
     .quick-links {
       display: flex;
@@ -204,31 +247,68 @@
       position: relative;
       animation: fadeInLinks 1.2s 1.2s both;
     }
+    .primary-actions {
+      display:flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 18px 0 6px 0;
+      animation: bounceInBtn 1.1s 1.05s both;
+    }
+    .primary-actions .primary-btn {
+      display:inline-block;
+      padding: 14px 34px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(15px) saturate(180%);
+      -webkit-backdrop-filter: blur(15px) saturate(180%);
+      border: 2px solid rgba(255, 255, 255, 0.55);
+      color: #1a237e;
+      font-family: 'Orbitron',sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: .35px;
+      text-decoration: none;
+      box-shadow: 0 10px 32px rgba(26,35,126,0.22), inset 0 1px 0 rgba(255,255,255,0.7);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: bounceInBtn 1.1s 1.1s both;
+    }
+    .primary-actions .primary-btn:hover {
+      background: rgba(255, 255, 255, 0.55);
+      border-color: rgba(255, 255, 255, 0.85);
+      transform: translateY(-6px) scale(1.06) rotate(-2deg);
+      box-shadow: 0 18px 48px rgba(26,35,126,0.30), inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+    .primary-actions .primary-btn:active {
+      transform: translateY(-2px) scale(1.02);
+    }
     .quick-links a {
       display: inline-block;
-      padding: 12px 28px;
-      border-radius: 8px;
-      background: linear-gradient(90deg,#25d366 0%,#1a237e 100%);
-      color: #fff;
+      padding: 14px 32px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(15px) saturate(180%);
+      -webkit-backdrop-filter: blur(15px) saturate(180%);
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      color: #1a237e;
       font-family: 'Orbitron',sans-serif;
       font-size: 1.1rem;
       text-decoration: none;
       font-weight: 700;
-      box-shadow: 0 2px 8px rgba(26,35,126,0.09);
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      border: none;
+      box-shadow: 0 8px 32px rgba(26,35,126,0.15), inset 0 1px 0 rgba(255,255,255,0.6);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       margin-top: 0;
       animation: bounceInBtn 1.1s 1.3s both;
     }
     .quick-links a:hover {
-      background: linear-gradient(90deg,#1a237e 0%,#25d366 100%);
-      color: #fff;
-      transform: translateY(-2px) scale(1.04);
-      box-shadow: 0 6px 24px rgba(26,35,126,0.13);
+      background: rgba(255, 255, 255, 0.5);
+      border-color: rgba(255, 255, 255, 0.8);
+      transform: translateY(-6px) scale(1.1) rotate(3deg);
+      box-shadow: 0 16px 48px rgba(26,35,126,0.3), inset 0 1px 0 rgba(255,255,255,0.9);
     }
     @keyframes fadeInLinks {
-      from { opacity: 0; transform: translateY(30px);}
-      to { opacity: 1; transform: translateY(0);}
+      from { opacity: 0; transform: translateY(50px) scale(0.8);}
+      to { opacity: 1; transform: translateY(0) scale(1);}
     }
     .stats-bar {
       display: flex;
@@ -238,17 +318,26 @@
       animation: fadeInStats 1.2s 1.4s both;
     }
     .stat {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(60,60,120,0.07);
-      padding: 22px 36px;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(15px) saturate(180%);
+      -webkit-backdrop-filter: blur(15px) saturate(180%);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(26,35,126,0.15), inset 0 1px 0 rgba(255,255,255,0.7);
+      padding: 24px 40px;
       text-align: center;
-      min-width: 120px;
+      min-width: 140px;
       font-family: 'Orbitron',sans-serif;
       color: #1a237e;
       font-size: 1.3rem;
       font-weight: 700;
       animation: popInStat 1.2s both;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .stat:hover {
+      transform: translateY(-10px) scale(1.12) rotate(-3deg);
+      box-shadow: 0 20px 60px rgba(26,35,126,0.35), inset 0 1px 0 rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.6);
     }
     .stat span {
       display: block;
@@ -256,45 +345,154 @@
       color: #25d366;
       margin-bottom: 6px;
       font-family: 'Orbitron',sans-serif;
-      animation: countUp 2s;
+      animation: countUp 2.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
     @keyframes fadeInStats {
-      from { opacity: 0; transform: translateY(40px);}
-      to { opacity: 1; transform: translateY(0);}
+      from { opacity: 0; transform: translateY(60px) scale(0.7) rotate(-10deg);}
+      to { opacity: 1; transform: translateY(0) scale(1) rotate(0deg);}
     }
     @keyframes popInStat {
-      0% { opacity: 0; transform: scale(0.7);}
-      70% { opacity: 1; transform: scale(1.08);}
-      100% { opacity: 1; transform: scale(1);}
+      0% { opacity: 0; transform: scale(0.3) rotate(-180deg);}
+      50% { opacity: 1; transform: scale(1.2) rotate(10deg);}
+      70% { transform: scale(0.9) rotate(-5deg);}
+      100% { opacity: 1; transform: scale(1) rotate(0deg);}
     }
     @keyframes countUp {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: scale(0.5) rotate(360deg);}
+      to { opacity: 1; transform: scale(1) rotate(0deg);}
     }
     footer {
-      background:#1a237e;
-      color:white;
-      text-align:center;
-      padding:32px 10px 18px 10px;
-      font-size:1.1rem;
-      letter-spacing:1px;
-      margin-top:40px;
-      border-radius:18px 18px 0 0;
-      box-shadow:0 -2px 12px rgba(0,0,0,0.09);
-      animation: fadeInFooter 1.2s 1.2s both;
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border-top:1px solid rgba(26,35,126,0.25);
+      padding:40px 28px 18px 28px; margin-top:60px;
+      color:#1a237e; font-size:.95rem; letter-spacing:.4px;
+    }
+    .site-footer-grid { max-width:1250px; margin:0 auto 26px auto; display:grid; gap:34px; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); }
+    .site-footer-grid h4 { font-family:'Orbitron',sans-serif; font-size:.9rem; letter-spacing:.6px; margin:0 0 10px 0; color:#1a237e; }
+    .site-footer-grid h4 i { margin-right:6px; color:#3949ab; }
+    .site-footer-grid ul { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px; }
+    .site-footer-grid a { color:#1a237e; text-decoration:none; font-size:.88rem; position:relative; }
+    .site-footer-grid a:hover { color:#3949ab; text-decoration:underline; }
+      /* Dark mode: align nav and footer accents to dark blue */
+      [data-theme="dark"] nav a { color:#1a237e; }
+      [data-theme="dark"] nav a:hover { color:#1a237e; background:rgba(26,35,126,0.10); }
+      [data-theme="dark"] nav a::after { background:#1a237e; }
+      [data-theme="dark"] .site-footer-grid h4 { color:#1a237e; }
+      [data-theme="dark"] .site-footer-grid h4 i { color:#1a237e; }
+      [data-theme="dark"] .site-footer-grid a { color:#1a237e; }
+      [data-theme="dark"] .site-footer-grid a:hover { color:#1a237e; }
+    .footer-brand-block { font-family:'Orbitron',sans-serif; font-size:1.05rem; letter-spacing:.8px; margin:0 0 6px 0; }
+    .footer-hours { font-size:.8rem; opacity:.8; line-height:1.4; }
+    .footer-cta { max-width:1250px; margin:0 auto 20px auto; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; border:1px solid rgba(26,35,126,0.15); border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.42)); box-shadow:0 6px 22px rgba(26,35,126,0.10); }
+    .footer-cta p { margin:0; font-weight:700; color:#1a237e; letter-spacing:.3px; }
+    .footer-cta-actions { display:flex; gap:10px; flex-wrap:wrap; }
+    .footer-cta .btn { display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:10px; text-decoration:none; font-weight:700; background:#1a237e; color:#fff; box-shadow:0 2px 8px rgba(26,35,126,0.12); }
+    .footer-cta .btn:hover { background:#3949ab; }
+    .footer-cta .btn-wa { background:#25d366; color:#0b1b34; }
+    .footer-bottom { border-top:1px solid rgba(26,35,126,0.15); padding-top:14px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; align-items:center; max-width:1250px; margin:0 auto; }
+    .footer-bottom small { font-size:.75rem; opacity:.75; }
+    .footer-social { display:flex; gap:10px; }
+    .footer-social a { width:30px; height:30px; display:inline-flex; align-items:center; justify-content:center; border-radius:6px; background:rgba(57,73,171,0.1); color:#1a237e; text-decoration:none; font-size:.9rem; transition:background .25s ease,color .25s ease; }
+    .footer-social a:hover { background:#3949ab; color:#fff; }
+    @media (max-width:700px){ nav { height:auto; flex-direction:column; padding:6px 14px; } .brand-logo{ margin-bottom:4px;} nav div { display:flex; flex-wrap:wrap; justify-content:center;} .footer-cta { flex-direction:column; align-items:flex-start; } .site-footer-grid { grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap:20px; } .footer-bottom { flex-direction:column; align-items:flex-start; } }
+    @media (max-width:480px){ nav a { font-size:.85rem; padding:4px 8px; } .brand-logo{ font-size:1.25rem;} footer { padding:34px 18px 16px 18px; } }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .footer-brand {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+    }
+    .footer-separator { color: rgba(26,35,126,0.55); }
+    footer a { color: var(--text); text-decoration: underline; transition: color 0.2s ease; }
+    footer a:hover { color: var(--accent); }
+    footer p {
+      margin: 0;
+      font-size: 0.96rem;
     }
     @keyframes fadeInFooter {
-      from { opacity: 0; transform: translateY(40px);}
-      to { opacity: 1; transform: translateY(0);}
+      from { opacity: 0; transform: translateY(30px);} 
+      to { opacity: 1; transform: translateY(0);} 
     }
-    .footer-links a {
-      color: #fff;
-      text-decoration: underline;
-      margin: 0 8px;
-      transition: color 0.2s;
+    @supports not ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
+      footer { background: rgba(255,255,255,0.95); }
     }
-    .footer-links a:hover {
-      color: #25d366;
+    .why-choose {
+      max-width: 1200px;
+      margin: 60px auto 40px auto;
+      padding: 50px 40px;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(26, 35, 126, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      animation: fadeInUp 1.2s 1.6s both;
+      position: relative;
+      z-index: 1;
+    }
+    .why-choose h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: #1a237e;
+      font-size: 2.5rem;
+      margin-bottom: 48px;
+      text-align: center;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .why-item {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 16px rgba(26, 35, 126, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+    .why-item:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 16px 48px rgba(26, 35, 126, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.6);
+    }
+    .why-item i {
+      font-size: 3.5rem;
+      color: #3949ab;
+      margin-bottom: 20px;
+      display: block;
+      animation: iconPulse 2s infinite;
+    }
+    @keyframes iconPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    .why-item h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: #1a237e;
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .why-item p {
+      color: #222;
+      font-size: 1rem;
+      line-height: 1.6;
     }
     @media (max-width: 900px) {
       .stats-bar { flex-direction: column; gap: 18px; align-items: center;}
@@ -304,6 +502,8 @@
       .home-hero { min-height: 40vh; }
       nav { padding: 0 10px; }
       .brand-logo { font-size: 1.3rem;}
+      .why-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .why-choose { padding: 40px 24px; }
     }
     @media (max-width: 600px) {
       nav {
@@ -316,6 +516,10 @@
         font-size: 1.1rem;
         margin-bottom: 6px;
       }
+      .why-grid { grid-template-columns: 1fr; gap: 20px; }
+      .why-choose { margin: 30px 10px; padding: 30px 20px; }
+      .why-choose h2 { font-size: 1.8rem; }
+      .why-item i { font-size: 2.5rem; }
       .home-hero {
         border-radius: 0 0 18px 18px;
         margin-bottom: 18px;
@@ -343,15 +547,24 @@
       }
       footer {
         font-size: 0.95rem;
-        padding: 18px 2vw 10px 2vw;
+        padding: 24px 12px 14px 12px;
         border-radius: 12px 12px 0 0;
       }
-      .footer-links {
+      .footer-inner {
         flex-direction: column;
-        gap: 4px;
-        font-size: 0.95rem;
+        gap: 6px;
+      }
+      .footer-separator {
+        display: none;
       }
     }
+  </style>
+  <style>
+    :focus-visible { outline: 2px dashed var(--accent); outline-offset: 3px; border-radius: 8px; }
+    .back-to-top { position:fixed; right:18px; bottom:18px; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border:none; border-radius:50%; background:linear-gradient(135deg,#1a237e,#3949ab); color:#fff; box-shadow:0 10px 28px var(--shadow); cursor:pointer; opacity:0; transform:translateY(10px); pointer-events:none; transition:opacity .25s ease, transform .25s ease; z-index:2200; }
+    .back-to-top:hover { transform:translateY(-2px); box-shadow:0 12px 32px var(--shadow); }
+    .back-to-top:active { transform:translateY(0); }
+    .back-to-top.show { opacity:1; pointer-events:auto; transform:translateY(0); }
   </style>
 </head>
 <body>
@@ -364,10 +577,14 @@
       <a href="contact.html">Contact</a>
       <a href="terms.html">Terms &amp; Conditions</a>
     </div>
+    
   </nav>
 
+  <!-- Slim scroll progress bar -->
+  <div id="scroll-progress" style="position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#25d366,#3949ab);z-index:2000;box-shadow:0 2px 6px rgba(0,0,0,0.2);"></div>
+
   <!-- Animated Home Hero Section -->
-  <div class="home-hero">
+  <div class="home-hero reveal">
     <div class="hero-bg-anim"></div>
     <div class="hero-bg-anim2"></div>
     <h1>Welcome to Bullet Auto Service Station</h1>
@@ -375,15 +592,68 @@
       Please use the navigation above to explore our services, book a service, or contact us.
     </p>
     <a href="services.html" class="animated-btn">View Our Services</a>
+    <div class="primary-actions">
+      <a href="booking.html" class="primary-btn">Book Now</a>
+      <a href="contact.html" class="primary-btn">Contact Us</a>
+    </div>
     <div class="quick-links">
-      <a href="booking.html">Book Now</a>
-      <a href="contact.html">Contact Us</a>
       <a href="https://wa.me/27723453221" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
         <i class="fab fa-whatsapp" style="margin-right:8px;"></i>WhatsApp
+      </a>
+      <a href="https://www.instagram.com/bullet_auto_performance/" target="_blank" rel="noopener" aria-label="View our Instagram" style="display:inline-flex;align-items:center;gap:8px;">
+        <i class="fab fa-instagram"></i>Instagram
+      </a>
+      <a href="https://www.youtube.com/@bulletautoperformance" target="_blank" rel="noopener" aria-label="View our YouTube" style="display:inline-flex;align-items:center;gap:8px;">
+        <i class="fab fa-youtube"></i>YouTube
+      </a>
+      <a href="https://www.tiktok.com/@bulletautoo?_r=1&_t=ZS-91Cf3CKTLJC" target="_blank" rel="noopener" aria-label="View our TikTok" style="display:inline-flex;align-items:center;gap:8px;">
+        <i class="fab fa-tiktok"></i>TikTok
       </a>
     </div>
     <div class="stats-bar">
       <div class="stat"><span id="stat1">0</span> Years of Experience</div>
+    </div>
+  </div>
+
+  <!-- Decorative SVG Divider -->
+  <svg aria-hidden="true" focusable="false" width="100%" height="60" viewBox="0 0 1200 120" preserveAspectRatio="none" style="display:block;margin-top:-20px;">
+    <path d="M0,0 V60 Q600,120 1200,60 V0 Z" fill="rgba(255,255,255,0.6)"></path>
+  </svg>
+
+  <!-- Why Choose Bullet Auto Section -->
+  <div class="why-choose reveal">
+    <h2>Why Choose Bullet Auto?</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <i class="fas fa-award"></i>
+        <h3>50+ Years Experience</h3>
+        <p>Trusted automotive experts serving the community with excellence. </p>
+      </div>
+      <div class="why-item reveal">
+        <i class="fas fa-tools"></i>
+        <h3>Expert Technicians</h3>
+        <p>Certified professionals with extensive training and cutting-edge diagnostic tools</p>
+      </div>
+      <div class="why-item reveal">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Quality Guaranteed</h3>
+        <p>We stand behind our work with comprehensive warranties on all repairs and services</p>
+      </div>
+      <div class="why-item reveal">
+        <i class="fas fa-clock"></i>
+        <h3>Fast Turnaround</h3>
+        <p>Efficient service without compromising quality - get back on the road quickly</p>
+      </div>
+      <div class="why-item reveal">
+        <i class="fas fa-dollar-sign"></i>
+        <h3>Fair Pricing</h3>
+        <p>Transparent, competitive rates with no hidden fees or surprise charges</p>
+      </div>
+      <div class="why-item reveal">
+        <i class="fas fa-handshake"></i>
+        <h3>Customer First</h3>
+        <p>Dedicated to your satisfaction with personalized service and honest advice</p>
+      </div>
     </div>
   </div>
 
@@ -393,14 +663,63 @@
   </div>
 
   <footer>
-    <div class="footer-links">
-      <span style="font-family:'Orbitron',sans-serif;font-size:1.3rem;">Bullet Auto Service Station</span>
-      &nbsp;|&nbsp;
-      <span>Email: <a href="mailto:services@bulletauto.co.za">services@bulletauto.co.za</a></span>
-      &nbsp;|&nbsp;
-      <span>WhatsApp: <a href="https://wa.me/27723453221" target="_blank" rel="noopener">072&nbsp;345&nbsp;3221</a></span>
+    <div class="footer-cta">
+      <p>Need service or repairs? We can help today.</p>
+      <div class="footer-cta-actions">
+        <a class="btn" href="booking.html"><i class="fa-solid fa-calendar-check"></i> Book Service</a>
+        <a class="btn btn-wa" href="https://wa.me/27723453221" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
     </div>
-    <p style="margin:0;">&copy; 2025 Bullet Auto Service Station. All rights reserved.</p>
+    <div class="site-footer-grid">
+      <div>
+        <p class="footer-brand-block">Bullet Auto Service Station</p>
+        <p style="margin:0 0 10px 0; font-size:.85rem; line-height:1.5;">Trusted automotive excellence since 1975 delivering quality repair, maintenance & detailing solutions.</p>
+        <p class="footer-hours">Mon–Fri: 08:00 – 17:30<br>Sat: 08:00 – 13:00</p>
+      </div>
+      <div>
+        <h4><i class="fa-solid fa-location-dot"></i> Location</h4>
+        <p style="margin:0; line-height:1.4;">7 Strand Road<br>Bellville, Cape Town</p>
+      </div>
+      <div>
+        <h4><i class="fa-solid fa-screwdriver-wrench"></i> Services</h4>
+        <ul>
+          <li><a href="services.html">Vehicle Repairs</a></li>
+          <li><a href="services.html">Scheduled Maintenance</a></li>
+          <li><a href="services.html">4x4 Fitment</a></li>
+          <li><a href="services.html">Detailing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><i class="fa-solid fa-link"></i> Quick Links</h4>
+        <ul>
+          <li><a href="booking.html">Book Service</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="https://www.instagram.com/bullet_auto_performance/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.youtube.com/@bulletautoperformance" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@bulletautoo?_r=1&_t=ZS-91Cf3CKTLJC" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="https://wa.me/27723453221" target="_blank" rel="noopener">WhatsApp Chat</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><i class="fa-solid fa-envelope-open-text"></i> Contact</h4>
+        <ul>
+          <li><a href="mailto:services@bulletauto.co.za">services@bulletauto.co.za</a></li>
+          <li><a href="https://wa.me/27723453221" target="_blank" rel="noopener">072 345 3221</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <small>&copy; 2025 Bullet Auto Service Station. All rights reserved.</small>
+      <div class="footer-social">
+        <a href="https://wa.me/27723453221" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="contact.html" aria-label="Email"><i class="fas fa-envelope"></i></a>
+  <a href="https://www.instagram.com/bullet_auto_performance/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.youtube.com/@bulletautoperformance" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.tiktok.com/@bulletautoo?_r=1&_t=ZS-91Cf3CKTLJC" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      </div>
+      <small><a href="terms.html" style="text-decoration:none;">Legal & Privacy</a></small>
+    </div>
   </footer>
   <script src="https://apps.elfsight.com/p/platform.js" defer></script>
   <!-- ...existing code... -->
@@ -423,6 +742,85 @@
     window.addEventListener('DOMContentLoaded', () => {
       animateValue("stat1", 0, 50, 1200);      // Years Experience
     });
+    // Back-to-top removed per request
+    // Theme based on device preference only
+    (function(){
+      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      const apply = () => {
+        document.documentElement.setAttribute('data-theme', mq.matches ? 'dark' : 'light');
+      };
+      apply();
+      if(mq.addEventListener){ mq.addEventListener('change', apply); } else if(mq.addListener) { mq.addListener(apply); }
+    })();
+
+    // Scroll reveal utility (respect reduced motion)
+    (function(){
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduce) return;
+      const revealEls = document.querySelectorAll('.reveal');
+      revealEls.forEach(el=>{
+        el.style.opacity = 0; el.style.transform = 'translateY(24px)';
+        el.style.transition = 'opacity .6s ease, transform .6s ease';
+      });
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.style.opacity = 1; e.target.style.transform = 'translateY(0)';
+            io.unobserve(e.target);
+          }
+        })
+      },{threshold:0.18});
+      revealEls.forEach(el=>io.observe(el));
+    })();
+
+    // Scroll progress bar
+    (function(){
+      const bar = document.getElementById('scroll-progress');
+      const onScroll = () => {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        bar.style.width = pct + '%';
+      };
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+    })();
+
+    // Mobile CTA strip (WhatsApp + Book)
+    (function(){
+      const strip = document.createElement('div');
+      strip.setAttribute('id','mobile-cta');
+      strip.setAttribute('style','position:fixed;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:10px;padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--border);box-shadow:0 6px 18px var(--shadow);z-index:2000;');
+      strip.innerHTML = '<a href="https://wa.me/27723453221" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;background:#25d366;color:#0b1b34;text-decoration:none;font-weight:700;"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="booking.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;background:#1a237e;color:#fff;text-decoration:none;font-weight:700;"><i class="fa-solid fa-calendar-check"></i> Book</a>';
+      const mq = window.matchMedia('(max-width: 700px)');
+      const apply = () => {
+        if(mq.matches){ if(!document.getElementById('mobile-cta')) document.body.appendChild(strip); }
+        else { const el = document.getElementById('mobile-cta'); if(el) el.remove(); }
+      };
+      apply();
+      if(mq.addEventListener){ mq.addEventListener('change', apply);} else if(mq.addListener){ mq.addListener(apply); }
+    })();
+  </script>
+  <!-- Bullet Auto AI Chatbot (client-side WebLLM) -->
+  <script type="module" src="chatbot.js"></script>
+  <button id="backToTop" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+  <script>
+    // Back-to-top control with reduced-motion support
+    (function(){
+      const btn = document.getElementById('backToTop');
+      if(!btn) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const toggle = () => {
+        const y = window.scrollY || document.documentElement.scrollTop;
+        btn.classList.toggle('show', y > 240);
+      };
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: reduce.matches ? 'auto' : 'smooth' });
+      });
+      window.addEventListener('scroll', toggle, { passive: true });
+      window.addEventListener('resize', toggle);
+      toggle();
+    })();
   </script>
 </body>
 </html>

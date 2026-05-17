@@ -6,49 +6,62 @@
   <title>Book a Service | BulletAuto</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="icon" type="image/png" href="UploadedImage0.jpg">
   <style>
+    :root {
+      --bg-grad-start: #e0eafc;
+      --bg-grad-end: #cfdef3;
+      --surface: rgba(255,255,255,0.60);
+      --text: #1a237e;
+      --accent: #3949ab;
+      --accent-2: #25d366;
+      --border: rgba(26,35,126,0.18);
+      --shadow: rgba(26,35,126,0.12);
+    }
+    /* Slim scroll progress bar */
+    #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 2000; background: linear-gradient(90deg, #3949ab, #25d366); box-shadow: 0 2px 6px var(--shadow); transition: width .1s ease; }
+    /* Mobile CTA strip */
+    .mobile-cta { position: fixed; bottom: 0; left: 0; right: 0; display: none; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; background: var(--surface); border-top: 1px solid var(--border); box-shadow: 0 -6px 18px var(--shadow); z-index: 2000; }
+    .mobile-cta .cta-btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 12px; border-radius: 10px; text-decoration: none; font-weight: 700; background: #1a237e; color: #fff; box-shadow: 0 2px 8px rgba(26,35,126,0.12); }
+    .mobile-cta .cta-btn:hover { background:#3949ab; }
+    .mobile-cta .cta-btn.wa { background:#25d366; color:#0b1b34; }
+    [data-theme="dark"] {
+      --bg-grad-start: #0f172a;
+      --bg-grad-end: #1e293b;
+      --surface: rgba(20,23,31,0.65);
+      --text: #e5e7eb;
+      --accent: #93c5fd;
+      --accent-2: #34d399;
+      --border: rgba(148,163,184,0.25);
+      --shadow: rgba(2,6,23,0.35);
+    }
     body {
       margin:0;
-      font-family:'Roboto',sans-serif;
-      background:linear-gradient(135deg,#e0eafc 0%,#cfdef3 100%);
-      color:#222;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Roboto', sans-serif;
+      background:linear-gradient(135deg,var(--bg-grad-start) 0%,var(--bg-grad-end) 100%);
+      color:var(--text);
       min-height:100vh;
-      animation: fadeInBody 1.2s;
+      animation: pageTransitionIn 0.6s ease-out;
     }
-    @keyframes fadeInBody {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes pageTransitionIn {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(5px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
     }
-    nav {
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:#fff;
-      box-shadow:0 2px 12px rgba(0,0,0,0.07);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:0 40px;
-      height:70px;
-      animation: slideDownNav 1s cubic-bezier(.23,1.01,.32,1);
-    }
+    nav { position:sticky; top:0; z-index:1000; display:flex; align-items:center; justify-content:space-between; height:54px; padding:0 28px; background:var(--surface); backdrop-filter: blur(12px) saturate(150%); -webkit-backdrop-filter: blur(12px) saturate(150%); border-bottom:1px solid var(--border); box-shadow:0 2px 10px var(--shadow); animation: slideDownNav .6s ease; }
     @keyframes slideDownNav {
       from { transform: translateY(-60px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
-    nav a {
-      text-decoration:none;
-      color:#1a237e;
-      font-weight:600;
-      font-size:1.1rem;
-      transition:color 0.2s, transform 0.2s;
-      position: relative;
-      padding: 6px 0;
-      margin-left: 8px;
-      margin-right: 8px;
-      animation: fadeInNavLink 1.2s;
-    }
+    nav a { text-decoration:none; color:#1a237e; font-weight:600; font-size:.95rem; letter-spacing:.3px; padding:6px 10px; margin:0 4px; border-radius:6px; position:relative; transition:color .25s ease, background .25s ease; }
     nav a::after {
       content: "";
       display: block;
@@ -63,10 +76,7 @@
     nav a:hover::after {
       width: 100%;
     }
-    nav a:hover {
-      color: #3949ab;
-      transform: scale(1.08);
-    }
+    nav a:hover { color:var(--accent); background:rgba(57,73,171,0.08); }
     nav a.active {
       color:#3949ab;
     }
@@ -74,15 +84,7 @@
       from { opacity: 0; transform: translateY(-20px);}
       to { opacity: 1; transform: translateY(0);}
     }
-    .brand-logo {
-      font-family: 'Orbitron',sans-serif;
-      font-size: 2.2rem;
-      color: #1a237e;
-      letter-spacing: 2px;
-      font-weight: 700;
-      text-shadow: 0 2px 12px rgba(60,60,120,0.07);
-      animation: popInLogo 1.2s;
-    }
+    .brand-logo { font-family:'Orbitron',sans-serif; font-size:1.5rem; color:var(--text); letter-spacing:1.5px; font-weight:700; }
     @keyframes popInLogo {
       0% { opacity: 0; transform: scale(0.7);}
       70% { opacity: 1; transform: scale(1.1);}
@@ -96,10 +98,13 @@
       to { opacity: 1; transform: translateY(0);}
     }
     .booking-form {
-      background:#f7faff;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(15px) saturate(120%);
+      -webkit-backdrop-filter: blur(15px) saturate(120%);
+      border: 2px solid rgba(255, 255, 255, 0.7);
       padding:32px 28px;
-      border-radius:16px;
-      box-shadow:0 4px 16px rgba(26,35,126,0.09);
+      border-radius:20px;
+      box-shadow:0 8px 32px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.5);
       max-width:700px;
       margin:40px auto;
       display:flex;
@@ -108,6 +113,7 @@
       position:relative;
       overflow:hidden;
       animation: popInForm 1.1s cubic-bezier(.23,1.01,.32,1) both;
+      transition: transform .2s ease, box-shadow .2s ease;
     }
     @keyframes popInForm {
       0% { opacity: 0; transform: scale(0.9);}
@@ -137,7 +143,7 @@
     .booking-form label {
       font-weight:600;
       margin-bottom:6px;
-      color:#1a237e;
+      color:var(--text);
       font-size:1rem;
       letter-spacing:0.5px;
       animation: fadeInLabel 1.1s 0.6s both;
@@ -151,14 +157,36 @@
     .booking-form textarea {
       width:100%;
       padding:12px;
-      border-radius:6px;
-      border:1px solid #b0bec5;
+      border-radius:8px;
+      border:2px solid var(--border);
       font-size:1rem;
-      background:#fff;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text);
+      font-weight: 500;
       margin-bottom:0;
-      transition:border 0.2s,box-shadow 0.2s;
-      box-shadow:0 1px 4px rgba(26,35,126,0.04);
-      animation: fadeInInput 1.1s 0.7s both;
+      transition:all 0.3s ease;
+    }
+    .booking-form select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="%231a237e" d="M6 9L1 4h10z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+    }
+    .booking-form select option {
+      background: white;
+      color: #1a237e;
+      padding: 10px;
+      font-weight: 500;
+    }
+    .booking-form input:focus,
+    .booking-form select:focus,
+    .booking-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(57, 73, 171, 0.1);
+      background: white;
     }
     @keyframes fadeInInput {
       from { opacity: 0; transform: scale(0.97);}
@@ -175,7 +203,7 @@
     .animated-btn {
       padding:14px 0;
       background:linear-gradient(90deg,#1a237e 0%,#3949ab 100%);
-      color:white;
+      color: #fff;
       border:none;
       border-radius:8px;
       cursor:pointer;
@@ -194,36 +222,43 @@
       60% { transform: scale(1.05); opacity: 1;}
       100% { transform: scale(1);}
     }
+    .booking-form:hover { transform: translateY(-4px); box-shadow:0 14px 36px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.6); }
     .animated-btn:hover {
       background:linear-gradient(90deg,#3949ab 0%,#1a237e 100%);
       transform:translateY(-2px) scale(1.04);
       box-shadow:0 6px 24px rgba(26,35,126,0.13);
     }
-    footer {
-      background:#1a237e;
-      color:white;
-      text-align:center;
-      padding:32px 10px 18px 10px;
-      font-size:1.1rem;
-      letter-spacing:1px;
-      margin-top:40px;
-      border-radius:18px 18px 0 0;
-      box-shadow:0 -2px 12px rgba(0,0,0,0.09);
-      animation: fadeInFooter 1.2s 1.2s both;
-    }
-    @keyframes fadeInFooter {
-      from { opacity: 0; transform: translateY(40px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    .footer-links a {
-      color: #fff;
-      text-decoration: underline;
-      margin: 0 8px;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover {
-      color: #25d366;
-    }
+    footer { background: var(--surface); backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); border-top:1px solid var(--border); padding:40px 28px 18px 28px; margin-top:60px; color:var(--text); font-size:.95rem; letter-spacing:.4px; }
+  .footer-cta { max-width:1250px; margin:0 auto 20px auto; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; border:1px solid rgba(26,35,126,0.15); border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.42)); box-shadow:0 6px 22px rgba(26,35,126,0.10); }
+  .footer-cta { transition: transform .22s ease, box-shadow .22s ease; }
+  .footer-cta:hover { transform: translateY(-3px); box-shadow:0 10px 28px var(--shadow); }
+  .footer-cta p { margin:0; font-weight:700; color:#1a237e; letter-spacing:.3px; }
+  .footer-cta-actions { display:flex; gap:10px; flex-wrap:wrap; }
+  .footer-cta .btn { display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:10px; text-decoration:none; font-weight:700; background:#1a237e; color:#fff; box-shadow:0 2px 8px rgba(26,35,126,0.12); }
+  .footer-cta .btn:hover { background:#3949ab; }
+  .footer-cta .btn-wa { background:#25d366; color:#0b1b34; }
+  .site-footer-grid { max-width:1250px; margin:0 auto 26px auto; display:grid; gap:34px; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); }
+  .site-footer-grid h4 { font-family:'Orbitron',sans-serif; font-size:.9rem; letter-spacing:.6px; margin:0 0 10px 0; color:#1a237e; }
+  .site-footer-grid h4 i { margin-right:6px; color:#3949ab; }
+    .site-footer-grid ul { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px; }
+    .site-footer-grid a { color:#1a237e; text-decoration:none; font-size:.88rem; position:relative; }
+    .site-footer-grid a:hover { color:#3949ab; text-decoration:underline; }
+      /* Dark mode: align nav and footer accents to dark blue */
+      [data-theme="dark"] nav a { color:#1a237e; }
+      [data-theme="dark"] nav a:hover { color:#1a237e; background:rgba(26,35,126,0.10); }
+      [data-theme="dark"] nav a::after { background:#1a237e; }
+      [data-theme="dark"] .site-footer-grid h4 { color:#1a237e; }
+      [data-theme="dark"] .site-footer-grid h4 i { color:#1a237e; }
+      [data-theme="dark"] .site-footer-grid a { color:#1a237e; }
+      [data-theme="dark"] .site-footer-grid a:hover { color:#1a237e; }
+    .footer-brand-block { font-family:'Orbitron',sans-serif; font-size:1.05rem; letter-spacing:.8px; margin:0 0 6px 0; }
+    .footer-hours { font-size:.8rem; opacity:.8; line-height:1.4; }
+    .footer-bottom { border-top:1px solid rgba(26,35,126,0.15); padding-top:14px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; align-items:center; max-width:1250px; margin:0 auto; }
+    .footer-bottom small { font-size:.75rem; opacity:.75; }
+    .footer-social { display:flex; gap:10px; }
+    .footer-social a { width:30px; height:30px; display:inline-flex; align-items:center; justify-content:center; border-radius:6px; background:rgba(57,73,171,0.1); color:#1a237e; text-decoration:none; font-size:.9rem; transition:background .25s ease,color .25s ease; }
+    .footer-social a:hover { background:#3949ab; color:#fff; }
+  @media (max-width:700px){ nav { height:auto; flex-direction:column; padding:6px 14px; } .brand-logo{ margin-bottom:4px;} nav div { display:flex; flex-wrap:wrap; justify-content:center;} .footer-cta { flex-direction:column; align-items:flex-start; } .site-footer-grid { grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap:20px; } .footer-bottom { flex-direction:column; align-items:flex-start; } }
     @media (max-width: 900px) {
       nav { padding: 0 10px; }
       .brand-logo { font-size: 1.3rem;}
@@ -261,18 +296,30 @@
       }
       footer {
         font-size: 0.95rem;
-        padding: 18px 2vw 10px 2vw;
+        padding: 24px 12px 14px 12px;
         border-radius: 12px 12px 0 0;
       }
-      .footer-links {
+      .footer-inner {
         flex-direction: column;
-        gap: 4px;
-        font-size: 0.95rem;
+        gap: 6px;
+      }
+      .footer-separator {
+        display: none;
       }
     }
   </style>
+  <style>
+    /* Focus ring and back-to-top control */
+    :focus-visible { outline: 2px dashed var(--accent); outline-offset: 3px; border-radius: 8px; }
+    .back-to-top { position:fixed; right:18px; bottom:18px; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border:none; border-radius:50%; background:linear-gradient(135deg,#1a237e,#3949ab); color:#fff; box-shadow:0 10px 28px var(--shadow); cursor:pointer; opacity:0; transform:translateY(10px); pointer-events:none; transition:opacity .25s ease, transform .25s ease; z-index:2200; }
+    .back-to-top:hover { transform:translateY(-2px); box-shadow:0 12px 32px var(--shadow); }
+    .back-to-top:active { transform:translateY(0); }
+    .back-to-top.show { opacity:1; pointer-events:auto; transform:translateY(0); }
+  </style>
 </head>
 <body>
+  <!-- Slim scroll progress bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
   <nav>
     <span class="brand-logo">Bullet Auto Service Station</span>
     <div style="display:flex;gap:32px;">
@@ -282,10 +329,11 @@
       <a href="contact.html">Contact</a>
       <a href="terms.html">Terms &amp; Conditions</a>
     </div>
+    
   </nav>
   <section>
     <h2 style="text-align:center;font-family:'Orbitron',sans-serif;color:#1a237e;font-size:2.2rem;margin-bottom:32px;animation:fadeInSection 1.2s 0.1s both;">Book a Service</h2>
-    <form action="mailto:services@bulletauto.co.za" method="POST" enctype="text/plain" class="booking-form">
+    <form action="mailto:services@bulletauto.co.za" method="POST" enctype="text/plain" class="booking-form reveal">
       <div class="form-row">
         <div class="form-group">
           <label for="fullname">Full Name</label>
@@ -375,12 +423,151 @@
     </script>
   </section>
   <footer>
-    <div style="margin-bottom:10px;">
-      <span style="font-family:'Orbitron',sans-serif;font-size:1.3rem;">Bullet Auto Service Station</span> &nbsp;|&nbsp;
-      <span>Email: <a href="mailto:services@bulletauto.co.za" style="color:#fff;text-decoration:underline;">services@bulletauto.co.za</a></span> &nbsp;|&nbsp;
-      <span>WhatsApp: <a href="https://wa.me/27723453221" style="color:#fff;text-decoration:underline;">0723453221</a></span>
+    <!-- Decorative SVG Divider -->
+    <svg aria-hidden="true" focusable="false" width="100%" height="60" viewBox="0 0 1200 120" preserveAspectRatio="none" style="display:block;margin-top:-20px;">
+      <path d="M0,0 V60 Q600,120 1200,60 V0 Z" fill="rgba(255,255,255,0.6)"></path>
+    </svg>
+    <div class="footer-cta">
+      <p>Need service or repairs? We can help today.</p>
+      <div class="footer-cta-actions">
+        <a class="btn" href="booking.html"><i class="fa-solid fa-calendar-check"></i> Book Service</a>
+        <a class="btn btn-wa" href="https://wa.me/27723453221" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
     </div>
-    <p style="margin:0;">&copy; 2025 Bullet Auto Service Station. All rights reserved.</p>
+    <div class="site-footer-grid">
+      <div>
+        <p class="footer-brand-block">Bullet Auto Service Station</p>
+        <p style="margin:0 0 10px 0; font-size:.85rem; line-height:1.5;">Trusted automotive excellence since 1975 delivering quality repair, maintenance & detailing solutions.</p>
+        <p class="footer-hours">Mon–Fri: 08:00 – 17:30<br>Sat: 08:00 – 13:00</p>
+      </div>
+      <div>
+        <h4><i class="fa-solid fa-location-dot"></i> Location</h4>
+        <p style="margin:0; line-height:1.4;">7 Strand Road<br>Bellville, Cape Town</p>
+      </div>
+      <div>
+        <h4><i class="fa-solid fa-screwdriver-wrench"></i> Services</h4>
+        <ul>
+          <li><a href="services.html">Vehicle Repairs</a></li>
+          <li><a href="scheduled.html">Scheduled Maintenance</a></li>
+          <li><a href="services.html">4x4 Fitment</a></li>
+          <li><a href="detailing.html">Detailing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><i class="fa-solid fa-link"></i> Quick Links</h4>
+        <ul>
+          <li><a href="booking.html">Book Service</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="https://www.instagram.com/bullet_auto_performance/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.youtube.com/@bulletautoperformance" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@bulletautoo?_r=1&_t=ZS-91Cf3CKTLJC" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="https://wa.me/27723453221" target="_blank" rel="noopener">WhatsApp Chat</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><i class="fa-solid fa-envelope-open-text"></i> Contact</h4>
+        <ul>
+          <li><a href="mailto:services@bulletauto.co.za">services@bulletauto.co.za</a></li>
+          <li><a href="https://wa.me/27723453221" target="_blank" rel="noopener">072 345 3221</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <small>&copy; 2025 Bullet Auto Service Station. All rights reserved.</small>
+      <div class="footer-social">
+        <a href="https://wa.me/27723453221" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="contact.html" aria-label="Email"><i class="fas fa-envelope"></i></a>
+  <a href="https://www.instagram.com/bullet_auto_performance/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.youtube.com/@bulletautoperformance" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+  <a href="https://www.tiktok.com/@bulletautoo?_r=1&_t=ZS-91Cf3CKTLJC" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      </div>
+      <small><a href="terms.html" style="text-decoration:none;">Legal & Privacy</a></small>
+    </div>
   </footer>
+  <button id="backToTop" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+  <!-- Bullet Auto AI Chatbot (client-side WebLLM) -->
+  <script type="module" src="chatbot.js"></script>
+  <script>
+    // Theme based on device preference only
+    (function(){
+      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      const apply = () => {
+        document.documentElement.setAttribute('data-theme', mq.matches ? 'dark' : 'light');
+      };
+      apply();
+      if(mq.addEventListener){ mq.addEventListener('change', apply); } else if(mq.addListener) { mq.addListener(apply); }
+    })();
+
+    // Scroll reveal utility
+    (function(){
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduce) return;
+      const revealEls = document.querySelectorAll('.reveal');
+      revealEls.forEach(el=>{
+        el.style.opacity = 0; el.style.transform = 'translateY(24px)';
+        el.style.transition = 'opacity .6s ease, transform .6s ease';
+      });
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.style.opacity = 1; e.target.style.transform = 'translateY(0)';
+            io.unobserve(e.target);
+          }
+        })
+      },{threshold:0.18});
+      revealEls.forEach(el=>io.observe(el));
+    })();
+
+    // Scroll progress bar logic
+    (function(){
+      const bar = document.getElementById('scroll-progress');
+      const update = () => {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        bar.style.width = pct + '%';
+      };
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+
+    // Mobile CTA strip (<=700px)
+    (function(){
+      const showCTA = () => window.matchMedia('(max-width: 700px)').matches;
+      let cta = document.querySelector('.mobile-cta');
+      if(!cta){
+        cta = document.createElement('div');
+        cta.className = 'mobile-cta';
+        cta.innerHTML = `
+          <a class="cta-btn wa" href="https://wa.me/27723453221" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          <a class="cta-btn" href="booking.html"><i class="fa-solid fa-calendar-check"></i> Book</a>
+        `;
+        document.body.appendChild(cta);
+      }
+      const apply = () => { cta.style.display = showCTA() ? 'flex' : 'none'; };
+      apply();
+      const mq = window.matchMedia('(max-width: 700px)');
+      if(mq.addEventListener){ mq.addEventListener('change', apply); } else if(mq.addListener){ mq.addListener(apply); }
+    })();
+
+    // Back-to-top control with prefers-reduced-motion respect
+    (function(){
+      const btn = document.getElementById('backToTop');
+      if(!btn) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const toggle = () => {
+        const y = window.scrollY || document.documentElement.scrollTop;
+        btn.classList.toggle('show', y > 240);
+      };
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: reduce.matches ? 'auto' : 'smooth' });
+      });
+      window.addEventListener('scroll', toggle, { passive: true });
+      window.addEventListener('resize', toggle);
+      toggle();
+    })();
+  </script>
 </body>
 </html>

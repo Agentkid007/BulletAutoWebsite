@@ -7,12 +7,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet"/>
   <link rel="icon" type="image/png" href="UploadedImage0.jpg">
-A  <style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
+      --bg-grad-start: #e0eafc;
+      --bg-grad-end: #cfdef3;
+      --surface: rgba(255,255,255,0.60);
+      --text: #1a237e;
+      --accent: #3949ab;
+      --accent-2: #25d366;
+      --border: rgba(26,35,126,0.18);
+      --shadow: rgba(26,35,126,0.12);
+    }
+    /* Slim scroll progress bar */
+    #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 2000; background: linear-gradient(90deg, #3949ab, #25d366); box-shadow: 0 2px 6px var(--shadow); transition: width .1s ease; }
+    /* Mobile CTA strip */
+    .mobile-cta { position: fixed; bottom: 0; left: 0; right: 0; display: none; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; background: var(--surface); border-top: 1px solid var(--border); box-shadow: 0 -6px 18px var(--shadow); z-index: 2000; }
+    .mobile-cta .cta-btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 12px; border-radius: 10px; text-decoration: none; font-weight: 700; background: #1a237e; color: #fff; box-shadow: 0 2px 8px rgba(26,35,126,0.12); }
+    .mobile-cta .cta-btn:hover { background:#3949ab; }
+    .mobile-cta .cta-btn.wa { background:#25d366; color:#0b1b34; }
+    [data-theme="dark"] {
+      --bg-grad-start: #0f172a;
+      --bg-grad-end: #1e293b;
+      --surface: rgba(20,23,31,0.65);
+      --text: #e5e7eb;
+      --accent: #93c5fd;
+      --accent-2: #34d399;
+      --border: rgba(148,163,184,0.25);
+      --shadow: rgba(2,6,23,0.35);
+    }
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
-      color: #222;
+      background: linear-gradient(135deg, var(--bg-grad-start) 0%, var(--bg-grad-end) 100%);
+      color: var(--text);
       min-height: 100vh;
       animation: fadeInBody 1.2s;
     }
@@ -20,55 +48,13 @@ A  <style>
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    nav {
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:rgba(255,255,255,0.72); /* Transparent nav bar */
-      box-shadow:0 2px 12px rgba(0,0,0,0.07);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:0 40px;
-      height:70px;
-      animation: slideDownNav 1s cubic-bezier(.23,1.01,.32,1);
-      backdrop-filter: transparent(8px); /* subtle glass effect */
-      -webkit-backdrop-filter: Transparent(8px);
-    }
+    nav { position:sticky; top:0; z-index:1000; display:flex; align-items:center; justify-content:space-between; height:54px; padding:0 24px; background:var(--surface); backdrop-filter: blur(12px) saturate(150%); -webkit-backdrop-filter: blur(12px) saturate(150%); border-bottom:1px solid var(--border); box-shadow:0 2px 10px var(--shadow); animation: slideDownNav .6s ease; }
     @keyframes slideDownNav {
       from { transform: translateY(-60px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
-    nav a {
-      text-decoration:none;
-      color:#1a237e;
-      font-weight:600;
-      font-size:1.1rem;
-      transition:color 0.2s, transform 0.2s;
-      position: relative;
-      padding: 6px 0;
-      margin-left: 8px;
-      margin-right: 8px;
-      animation: fadeInNavLink 1.2s;
-    }
-    nav a::after {
-      content: "";
-      display: block;
-      width: 0;
-      height: 2px;
-      background: #3949ab;
-      transition: width .3s;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
-    nav a:hover::after {
-      width: 100%;
-    }
-    nav a:hover {
-      color: #3949ab;
-      transform: scale(1.08);
-    }
+    nav a { text-decoration:none; color:var(--text); font-weight:600; font-size:.9rem; letter-spacing:.3px; padding:6px 10px; margin:0 2px; border-radius:6px; position:relative; transition:color .25s ease, background .25s ease; }
+    nav a:hover { color:var(--accent); background:rgba(57,73,171,0.08); }
     nav a.active {
       color:#3949ab;
     }
@@ -76,15 +62,7 @@ A  <style>
       from { opacity: 0; transform: translateY(-20px);}
       to { opacity: 1; transform: translateY(0);}
     }
-    .brand-logo {
-      font-family: 'Orbitron',sans-serif;
-      font-size: 2.2rem;
-      color: #1a237e;
-      letter-spacing: 2px;
-      font-weight: 700;
-      text-shadow: 0 2px 12px rgba(60,60,120,0.07);
-      animation: popInLogo 1.2s;
-    }
+    .brand-logo { font-family:'Orbitron',sans-serif; font-size:1.4rem; color:var(--text); letter-spacing:1.3px; font-weight:700; }
     @keyframes popInLogo {
       0% { opacity: 0; transform: scale(0.7);}
       70% { opacity: 1; transform: scale(1.1);}
@@ -129,6 +107,60 @@ A  <style>
         align-items: flex-start !important;
       }
     }
+    .page-content { padding: 48px 16px 40px 16px; display: flex; justify-content: center; }
+    .vehicle-box {
+      width: 100%;
+      max-width: 600px;
+      margin: 48px auto 0 auto;
+      padding: 32px 26px;
+      background: rgba(247,250,255,0.75);
+      border-radius: 18px;
+      box-shadow: 0 6px 32px var(--shadow);
+      animation: fadeInBox 1.2s 0.2s both;
+      position: relative;
+      overflow: hidden;
+      color: #1a237e;
+    }
+    .vehicle-box .didyouknow-title {
+      color: #1a237e;
+      font-family:'Orbitron',sans-serif;
+      font-size:1.5rem;
+      margin: 0 0 18px 0;
+      letter-spacing:1px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .didyouknow-icon { font-size: 2.2rem; color: #3949ab; position: absolute; top: 22px; right: 28px; opacity: 0.13; pointer-events: none; }
+    .vehicle-box h3 { color: #1a237e; font-size: 1.13rem; margin-bottom: 10px; margin-top: 0; font-weight: 700; letter-spacing: 0.5px; }
+    .vehicle-box ul {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-left: 18px;
+      margin-bottom: 0;
+      padding-left: 0;
+      list-style: disc inside;
+      color: #1a237e;
+    }
+    .vehicle-box li { margin-bottom: 7px; }
+    @keyframes fadeInBox {
+      from { opacity:0; transform: translateY(24px) scale(0.98); }
+      to { opacity:1; transform: translateY(0) scale(1); }
+    }
+    /* Dark theme readability */
+    [data-theme="dark"] .vehicle-box {
+      background: rgba(17,24,39,0.65);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px var(--shadow);
+      color: var(--text);
+    }
+    [data-theme="dark"] .vehicle-box .didyouknow-title,
+    [data-theme="dark"] .vehicle-box h3,
+    [data-theme="dark"] .vehicle-box ul,
+    [data-theme="dark"] .vehicle-box li {
+      color: var(--text);
+    }
+    [data-theme="dark"] .didyouknow-icon { color: var(--accent); opacity: 0.25; }
     /* Animated background slideshow */
     .bg-slideshow {
       position: fixed;
@@ -175,58 +207,160 @@ A  <style>
     @media (max-width: 600px) {
       /* .bg-overlay { display: none; } */
     }
+  footer { background: var(--surface); backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); border-top:1px solid var(--border); padding:40px 24px 18px 24px; margin-top:60px; color:var(--text); font-size:.9rem; letter-spacing:.4px; }
+  .footer-cta { max-width:1100px; margin:0 auto 20px auto; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; border:1px solid rgba(26,35,126,0.15); border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.42)); box-shadow:0 6px 22px rgba(26,35,126,0.10); }
+    .footer-cta { transition: transform .22s ease, box-shadow .22s ease; }
+    .footer-cta:hover { transform: translateY(-3px); box-shadow:0 10px 28px var(--shadow); }
+  .footer-cta p { margin:0; font-weight:700; color:var(--text); letter-spacing:.3px; }
+  .footer-cta-actions { display:flex; gap:10px; flex-wrap:wrap; }
+  .footer-cta .btn { display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:10px; text-decoration:none; font-weight:700; background:#1a237e; color:#fff; box-shadow:0 2px 8px rgba(26,35,126,0.12); }
+  .footer-cta .btn:hover { background:#3949ab; }
+  .footer-cta .btn-wa { background:#25d366; color:#0b1b34; }
+    .site-footer-grid { max-width:1100px; margin:0 auto 24px auto; display:grid; gap:28px; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); }
+  .site-footer-grid h4 { font-family:'Orbitron',sans-serif; font-size:.8rem; letter-spacing:.5px; margin:0 0 8px 0; color:var(--text); }
+  .site-footer-grid h4 i { margin-right:6px; color:#3949ab; }
+    .site-footer-grid ul { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:5px; }
+    .site-footer-grid a { color:var(--text); text-decoration:none; font-size:.8rem; }
+    .site-footer-grid a:hover { color:#3949ab; text-decoration:underline; }
+    .footer-brand-block { font-family:'Orbitron',sans-serif; font-size:.95rem; letter-spacing:.7px; margin:0 0 4px 0; }
+    .footer-hours { font-size:.7rem; opacity:.75; line-height:1.3; }
+    .footer-bottom { border-top:1px solid rgba(26,35,126,0.15); padding-top:12px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; align-items:center; max-width:1100px; margin:0 auto; }
+    .footer-bottom small { font-size:.65rem; opacity:.7; }
+    .footer-social { display:flex; gap:8px; }
+    .footer-social a { width:26px; height:26px; display:inline-flex; align-items:center; justify-content:center; border-radius:6px; background:rgba(57,73,171,0.1); color:#1a237e; text-decoration:none; font-size:.75rem; }
+    .footer-social a:hover { background:#3949ab; color:#fff; }
+  @media (max-width:700px){ nav { height:auto; flex-direction:column; padding:6px 12px; } .brand-logo{ margin-bottom:4px;} .footer-cta { flex-direction:column; align-items:flex-start; } .site-footer-grid { grid-template-columns: repeat(auto-fit,minmax(130px,1fr)); gap:18px; } .footer-bottom { flex-direction:column; align-items:flex-start; } }
+  </style>
+  <style>
+    :focus-visible { outline: 2px dashed var(--accent); outline-offset: 3px; border-radius: 8px; }
+    .back-to-top { position:fixed; right:18px; bottom:18px; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border:none; border-radius:50%; background:linear-gradient(135deg,#1a237e,#3949ab); color:#fff; box-shadow:0 10px 28px var(--shadow); cursor:pointer; opacity:0; transform:translateY(10px); pointer-events:none; transition:opacity .25s ease, transform .25s ease; z-index:2200; }
+    .back-to-top:hover { transform:translateY(-2px); box-shadow:0 12px 32px var(--shadow); }
+    .back-to-top:active { transform:translateY(0); }
+    .back-to-top.show { opacity:1; pointer-events:auto; transform:translateY(0); }
   </style>
 </head>
 <body>
-  <!-- Animated Background Slideshow -->
+  <!-- Slim scroll progress bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <!-- Animated Background Slideshow (match scheduled) -->
   <div class="bg-slideshow">
-    <div class="bg-slide" style="background-image:url('doc\ eddie.jpg');"></div>
-    <div class="bg-slide" style="background-image:url('fast\ car\ 1.jpg');"></div>
-    <div class="bg-slide" style="background-image:url('fast\ car\ 2.jpg');"></div>
-    <div class="bg-slide" style="background-image:url('fast\ car\ 3.jpg');"></div>
-    <div class="bg-slide" style="background-image:url('big\ boi\ cars.jpg');"></div>
-    <div class="bg-slide" style="background-image:url('fast\ car\ 4.jpg');"></div>
-    <div class="bg-slide" style="background-image:url('fast\ car\ 5.jpg');"></div>
-    <div class="bg-slide" style="background-image:url('fast\ car\ 6.jpg');"></div>
-    <div class="bg-slide" style="background-image:url('fast\ car\ 7.jpg');"></div>
-
-    <!-- Add more images as needed -->
+    <div class="bg-slide" style="background-image:url('maintance.png');"></div>
+    <div class="bg-slide" style="background-image:url('main2.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('main3.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('main4.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('main5.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('main6.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('main7.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('main8.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('main9.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('main1.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('main10.jpg');"></div>
   </div>
   <div class="bg-overlay"></div>
   <nav>
     <span class="brand-logo">Bullet Auto Service Station</span>
-    <div style="display:flex;gap:32px;">
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="booking.html">Book</a>
       <a href="contact.html">Contact</a>
-      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="terms.html">Terms</a>
     </div>
+    
   </nav>
-  <!-- Add your Vehicle Repairs page content here -->
-  <!-- Add this after your navigation bar, before any other content -->
-<div class="vehicle-box" style="max-width:600px;margin:48px auto 0 auto;padding:32px 26px;
-     background:rgba(247,250,255,0.75); /* More transparent white-blue */
-     border-radius:18px;
-     box-shadow:0 6px 32px rgba(26,35,126,0.13);
-     animation:fadeInBox 1.2s 0.2s both;">
-  <h2 style="color:#1a237e;font-family:'Orbitron',sans-serif;font-size:1.5rem;margin-top:0;margin-bottom:18px;letter-spacing:1px;text-align:center;">
-    <i class="fa fa-tools" style="color:#3949ab;margin-right:8px;"></i>Vehicle Repairs & Services
-  </h2>
-  <ul style="font-size:1.08rem;line-height:1.7;margin-left:0;padding-left:0;list-style: disc inside;">
-    <li>Automotive - Repairs</li>
-    <li>Cv's / Brakes / Clutches and Suspensions</li>
-    <li>4x4 Fitment</li>
-    <li>House Calls (Prior to Booking)</li>
-    <li>Vehicle Pick up / Drop off</li>
-    <li>Aircon Re-Gas</li>
-    <li>Weekend Services (Prior to Booking)</li>
-    <li>Caravan repairs / services (tail lights, brakes and bearings)</li>
-  </ul>
-</div>
-<!-- Make sure Font Awesome is loaded in your <head> for the icon -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <main class="page-content">
+    <section class="vehicle-box" aria-labelledby="repairsHeading">
+      <span class="didyouknow-icon" aria-hidden="true">&#9888;</span>
+      <div class="didyouknow-title" id="repairsHeading">
+        <span style="color:#3949ab;"><i class="fa fa-screwdriver-wrench"></i></span>
+        Vehicle Repairs & Services
+      </div>
+      <p style="font-size:1.08rem;margin-bottom:18px;">Diagnostics-led repairs, OEM-grade parts, and flexible pickup/drop-off to keep you moving.</p>
+      <h3 style="color:#263278; font-size:1.13rem; margin:0 0 10px 0; font-weight:700; letter-spacing:.5px;">What we cover:</h3>
+      <ul>
+        <li style="--i:0">Engine, driveline, and drivetrain repairs</li>
+        <li style="--i:1">CVs, brakes, clutches, and suspension</li>
+        <li style="--i:2">4x4 fitment and setup</li>
+        <li style="--i:3">House calls (prior to booking)</li>
+        <li style="--i:4">Vehicle pick-up and drop-off</li>
+        <li style="--i:5">Aircon re-gas and leak checks</li>
+        <li style="--i:6">Weekend services (prior to booking)</li>
+        <li style="--i:7">Caravan repairs/services (tail lights, brakes, bearings)</li>
+      </ul>
+    </section>
+  </main>
+<footer>
+  <div class="footer-cta">
+    <p>Need a repair quote? Message or book now.</p>
+    <div class="footer-cta-actions">
+      <a class="btn" href="booking.html"><i class="fa-solid fa-calendar-check"></i> Book Service</a>
+      <a class="btn btn-wa" href="https://wa.me/27723453221" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div>
+  <div class="site-footer-grid">
+    <div>
+      <p class="footer-brand-block">Bullet Auto Service Station</p>
+      <p style="margin:0 0 8px 0; font-size:.75rem; line-height:1.4;">Automotive repair, maintenance & detailing excellence since 1975.</p>
+      <p class="footer-hours">Mon–Fri: 08:00 – 17:30<br>Sat: 08:00 – 13:00</p>
+    </div>
+    <div>
+      <h4><i class="fa-solid fa-location-dot"></i> Location</h4>
+      <p style="margin:0; line-height:1.3; font-size:.75rem;">7 Strand Road<br>Bellville, Cape Town</p>
+    </div>
+    <div>
+      <h4><i class="fa-solid fa-screwdriver-wrench"></i> Services</h4>
+      <ul>
+        <li><a href="services.html">Vehicle Repairs</a></li>
+        <li><a href="scheduled.html">Scheduled Maintenance</a></li>
+        <li><a href="services.html">4x4 Fitment</a></li>
+        <li><a href="detailing.html">Detailing</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4><i class="fa-solid fa-link"></i> Quick Links</h4>
+      <ul>
+        <li><a href="booking.html">Book Service</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="https://www.instagram.com/bullet_auto_performance/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.youtube.com/@bulletautoperformance" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@bulletautoo?_r=1&_t=ZS-91Cf3CKTLJC" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="https://wa.me/27723453221" target="_blank" rel="noopener">WhatsApp Chat</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4><i class="fa-solid fa-envelope-open-text"></i> Contact</h4>
+      <ul>
+        <li><a href="mailto:services@bulletauto.co.za">services@bulletauto.co.za</a></li>
+        <li><a href="https://wa.me/27723453221" target="_blank" rel="noopener">072 345 3221</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <small>&copy; 2025 Bullet Auto Service Station. All rights reserved.</small>
+    <div class="footer-social">
+      <a href="https://wa.me/27723453221" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="contact.html" aria-label="Email"><i class="fas fa-envelope"></i></a>
+  <a href="https://www.instagram.com/bullet_auto_performance/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.youtube.com/@bulletautoperformance" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+  <a href="https://www.tiktok.com/@bulletautoo?_r=1&_t=ZS-91Cf3CKTLJC" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <small><a href="terms.html" style="text-decoration:none;">Legal & Privacy</a></small>
+  </div>
+</footer>
+<button id="backToTop" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<!-- Font Awesome moved to <head> for consistency -->
 <script>
+    // Theme based on device preference only
+    (function(){
+      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      const apply = () => {
+        document.documentElement.setAttribute('data-theme', mq.matches ? 'dark' : 'light');
+      };
+      apply();
+      if(mq.addEventListener){ mq.addEventListener('change', apply); } else if(mq.addListener) { mq.addListener(apply); }
+    })();
+
     // Simple background slideshow logic
     const slides = document.querySelectorAll('.bg-slide');
     let current = 0;
@@ -241,6 +375,60 @@ A  <style>
     }
     showSlide(current);
     setInterval(nextSlide, 6000); // Change every 6 seconds
+  </script>
+  <script>
+    // Scroll progress bar logic
+    (function(){
+      const bar = document.getElementById('scroll-progress');
+      const update = () => {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        bar.style.width = pct + '%';
+      };
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+
+    // Mobile CTA strip (<=700px)
+    (function(){
+      const showCTA = () => window.matchMedia('(max-width: 700px)').matches;
+      let cta = document.querySelector('.mobile-cta');
+      if(!cta){
+        cta = document.createElement('div');
+        cta.className = 'mobile-cta';
+        cta.innerHTML = `
+          <a class="cta-btn wa" href="https://wa.me/27723453221" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          <a class="cta-btn" href="booking.html"><i class="fa-solid fa-calendar-check"></i> Book</a>
+        `;
+        document.body.appendChild(cta);
+      }
+      const apply = () => { cta.style.display = showCTA() ? 'flex' : 'none'; };
+      apply();
+      const mq = window.matchMedia('(max-width: 700px)');
+      if(mq.addEventListener){ mq.addEventListener('change', apply); } else if(mq.addListener){ mq.addListener(apply); }
+    })();
+  </script>
+  <!-- Bullet Auto AI Chatbot (client-side WebLLM) -->
+  <script type="module" src="chatbot.js"></script>
+  <script>
+    // Back-to-top control with reduced-motion support
+    (function(){
+      const btn = document.getElementById('backToTop');
+      if(!btn) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const toggle = () => {
+        const y = window.scrollY || document.documentElement.scrollTop;
+        btn.classList.toggle('show', y > 240);
+      };
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: reduce.matches ? 'auto' : 'smooth' });
+      });
+      window.addEventListener('scroll', toggle, { passive: true });
+      window.addEventListener('resize', toggle);
+      toggle();
+    })();
   </script>
 </body>
 </html>
